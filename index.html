@@ -117,31 +117,90 @@ body {
     </style>
 </head>
 <body>
-
-    <div id="side-nav" class="side-nav" style="direction: rtl; text-align: right;">
-        <h2 style="color: var(--gold); border-bottom: 1px solid #333; padding-bottom: 15px;">قائمة الطعام 🌶️</h2>
+    <div id="side-nav" class="side-nav" style="direction: rtl; text-align: right; background: #1a0f0a !important; border-left: 3px solid #E3B361 !important; z-index: 9999 !important;">
+    
+        <div style="display: flex; justify-content: space-between; align-items: center; padding: 20px; border-bottom: 1px solid rgba(227, 179, 97, 0.2); margin-bottom: 15px;">
+            <h2 style="color: #E3B361; margin: 0; font-size: 22px; font-weight: bold;">قائمة الطعام 🌶️</h2>
+            <div onclick="document.getElementById('side-nav').classList.remove('active'); document.querySelector('.overlay').style.display='none';" 
+                 style="cursor: pointer; background: rgba(255,255,255,0.05); padding: 8px 12px; border-radius: 10px; transition: 0.3s;">
+                <i class="fas fa-times" style="color: #F6E6CF; font-size: 26px;"></i>
+            </div>
+        </div>
         
-        <a href="javascript:void(0)" onclick="filterMenu('all'); closeAll()"><i class="fas fa-home"></i> 🏠 الكل (الرئيسية)</a>
+        <style>
+            /* تنسيق الأزرار (الأقسام) */
+            .side-nav a {
+                display: flex !important;
+                align-items: center !important;
+                gap: 15px !important;
+                background: #251610 !important; 
+                border: 1px solid rgba(227, 179, 97, 0.1) !important;
+                color: #F6E6CF !important;
+                padding: 16px !important;
+                margin: 0 15px 12px 15px !important;
+                border-radius: 12px !important;
+                text-decoration: none !important;
+                font-size: 17px !important;
+                font-weight: 600 !important;
+                transition: all 0.3s ease !important;
+            }
+    
+            .side-nav a i { 
+                color: #E3B361 !important; 
+                width: 25px; 
+                text-align: center; 
+                font-size: 20px; 
+                transition: 0.3s;
+            }
+    
+            /* تأثير اللون الأحمر عند الوقوف أو اللمس (Hover & Active) */
+            .side-nav a:hover, 
+            .side-nav a:active {
+                background: #d32f2f !important; /* اللون الأحمر */
+                color: #ffffff !important;
+                border-color: #ffffff !important;
+                transform: scale(1.02) !important;
+            }
+    
+            .side-nav a:hover i, 
+            .side-nav a:active i {
+                color: #ffffff !important; /* تغيير لون الأيقونة للأبيض مع الأحمر */
+            }
+        </style>
+    
+        <a href="javascript:void(0)" onclick="filterMenu('all'); document.getElementById('side-nav').classList.remove('active'); document.querySelector('.overlay').style.display='none';">
+            <i class="fas fa-home"></i> الرئيسية
+        </a>
         
-        <a href="javascript:void(0)" onclick="filterMenu('offers'); closeAll()">🎁 عروض الاحد والاثنين</a>
-        <a href="javascript:void(0)" onclick="filterMenu('crepes'); closeAll()">🌯 كريبات </a>
-        <a href="javascript:void(0)" onclick="filterMenu('pizza'); closeAll()">🍕 بيتزا ايطالي</a>
-        <a href="javascript:void(0)" onclick="filterMenu('waffles'); closeAll()"><i class="fas fa-ice-cream"></i> 🧇 ركن الوافل</a>
+        <a href="javascript:void(0)" onclick="filterMenu('offers'); document.getElementById('side-nav').classList.remove('active'); document.querySelector('.overlay').style.display='none';">
+            <i class="fas fa-gift"></i> عروض التوفير
+        </a>
         
-        <a href="javascript:void(0)" onclick="filterMenu('sweet-crepe'); closeAll()" style="position: relative; display: flex; align-items: center; gap: 8px; background: rgba(255, 0, 0, 0.05);">
-            <span>🍫 كريب حلو</span>
-            <span style="background: #ff0000; color: white; font-size: 9px; padding: 2px 6px; border-radius: 10px; font-weight: bold; animation: pulse-new 1.5s infinite; position: absolute; left: 15px;">NEW</span>
+        <a href="javascript:void(0)" onclick="filterMenu('crepes'); document.getElementById('side-nav').classList.remove('active'); document.querySelector('.overlay').style.display='none';">
+            <i class="fas fa-utensils"></i> ركن الكريبات
+        </a>
+        
+        <a href="javascript:void(0)" onclick="filterMenu('pizza'); document.getElementById('side-nav').classList.remove('active'); document.querySelector('.overlay').style.display='none';">
+            <i class="fas fa-pizza-slice"></i> بيتزا إيطالي
+        </a>
+        
+        <a href="javascript:void(0)" onclick="filterMenu('waffles'); document.getElementById('side-nav').classList.remove('active'); document.querySelector('.overlay').style.display='none';">
+            <i class="fas fa-ice-cream"></i> ركن الوافل
+        </a>
+        
+        <a href="javascript:void(0)" onclick="filterMenu('sandwiches'); document.getElementById('side-nav').classList.remove('active'); document.querySelector('.overlay').style.display='none';">
+            <i class="fas fa-hotdog"></i> ركن السندوتشات
+        </a>
+        
+        <a href="javascript:void(0)" onclick="filterMenu('drinks'); document.getElementById('side-nav').classList.remove('active'); document.querySelector('.overlay').style.display='none';">
+            <i class="fas fa-plus-circle"></i> المقبلات والاضافات
         </a>
     
-        <a href="javascript:void(0)" onclick="filterMenu('sandwiches'); closeAll()"><i class="fas fa-hotdog"></i> 🥖 ركن السندوتشات</a>
-        <a href="javascript:void(0)" onclick="filterMenu('drinks'); closeAll()">🥤 المقبلات والاضافات</a>
-    
-        <div style="margin-top: 50px; text-align: center; color: #888; font-size: 11px;">
+        <div style="margin-top: 40px; text-align: center; color: #888; font-size: 12px; border-top: 1px solid rgba(227,179,97,0.1); padding-top: 20px; margin-bottom: 20px;">
             Designed & Developed by<br>
-            <span style="color: #c71919; font-weight: bold; font-size: 13px;">Eng. Mahmoud Khaled </span>
+            <span style="color: #E3B361; font-weight: bold; font-size: 14px;">Eng. Karam Khaled</span>
         </div>
     </div>
-    
     <style>
         /* التنسيقات الأساسية (الهيدر والسيرش) كما هي */
         @keyframes pulse-new {
