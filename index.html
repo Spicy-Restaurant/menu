@@ -1238,7 +1238,7 @@ body {
 <script>
     // --- 1. الإعدادات والروابط الأساسية ---
     let cart = JSON.parse(localStorage.getItem('spicyCart')) || {};
-    const sheetUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRP8qlzZo3vEbedBY3AC785fvzkYP1F8WFnmbIkVHlI99_LSXgDFQsOqgzou98BloM_qEfxLkL9phrv/pub?gid=0&single=true&output=csv";
+    const sheetUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRP8qlzZo3vEbedBY3AC785fvzkYP1F8WFnmbIkVHlI99_LSXgDFQsOqgzou98BloM_qEfxLkL9phrv/pub?gid=0&single=true&output=csv&t=" + new Date().getTime();
     window.selectedPizzas = {}; // لحفظ المقاس المختار لكل صنف
 
     // --- 2. سحب المنيو من جوجل شيت بنفس تصميمك الفاخر ---
