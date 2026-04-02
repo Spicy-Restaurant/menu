@@ -42,12 +42,48 @@ body {
 }
 
 /* لو حابب تخلي الأيقونات (السلة والمنيو) لونها ذهبي بدل الأصفر */
+/* لو حابب تخلي الأيقونات (السلة والمنيو) لونها ذهبي بدل الأصفر */
 .header i, .fa-shopping-basket, .fa-bars {
     color: #E3B361 !important;
 }
         .nav-container { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; padding: 0 15px; }
         .logo-box img { height: 45px; filter: drop-shadow(0 0 8px var(--main-red)); }
-        .menu-icon, .cart-icon { font-size: 24px; color: var(--gold); cursor: pointer; }
+        
+        /* التعديل هنا: دمجنا الأيقونة مع كلمة المنيو والسهم */
+        .menu-icon { 
+            display: flex; 
+            align-items: center; 
+            gap: 8px; 
+            font-size: 24px; 
+            color: var(--gold); 
+            cursor: pointer; 
+        }
+        
+        .menu-text-hint {
+            font-size: 14px;
+            font-weight: bold;
+            color: #E3B361;
+            font-family: 'Cairo', sans-serif;
+        }
+
+        .menu-arrow-hint {
+            font-size: 18px;
+            color: #E3B361;
+            animation: bounce-arrow 1.2s infinite ease-in-out;
+            display: inline-block;
+        }
+
+        @keyframes bounce-arrow {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(-6px); }
+        }
+
+        /* إخفاء الكلمة في الشاشات الكبيرة عشان التصميم يفضل شيك */
+        @media (min-width: 992px) {
+            .menu-text-hint, .menu-arrow-hint { display: none !important; }
+        }
+
+        .cart-icon { font-size: 24px; color: var(--gold); cursor: pointer; }
 
         /* --- Slider Section (تم التكبير) --- */
         .slider-section { padding: 15px; }
@@ -331,20 +367,24 @@ body {
         console.log("Slider mode: Single Video - Animation Disabled.");
     });
 </script>
-    <header>
-        <div class="nav-container">
-            <div class="menu-icon" onclick="toggleMenu()">
-                <i class="fas fa-bars"></i>
-            </div>
-            <div class="logo-box">
-                <img src="logo.png" alt="SPICY">
-            </div>
-            <div class="cart-icon" id="cart-icon" onclick="toggleCart()">
-                <i class="fas fa-shopping-basket"></i>
-                <span class="cart-badge" id="cart-count-badge">0</span>
-            </div>
+<header>
+    <div class="nav-container">
+        <div class="menu-icon" onclick="toggleMenu()" style="display: flex; align-items: center; gap: 8px;">
+            <span class="menu-arrow-hint">←</span>
+            <span class="menu-text-hint">المنيو</span>
+            <i class="fas fa-bars"></i>
         </div>
-    </header>
+
+        <div class="logo-box">
+            <img src="logo.png" alt="SPICY">
+        </div>
+
+        <div class="cart-icon" id="cart-icon" onclick="toggleCart()">
+            <i class="fas fa-shopping-basket"></i>
+            <span class="cart-badge" id="cart-count-badge">0</span>
+        </div>
+    </div>
+</header>
 
 
     <div class="search-container">
