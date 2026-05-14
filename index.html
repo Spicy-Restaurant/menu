@@ -19,12 +19,36 @@
  <meta property="og:type" content="website">
  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes">
  <meta name="theme-color" content="#1a0505">
+ 
  <link rel="preconnect" href="https://fonts.googleapis.com">
  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>اسبايسي – البدرشين | Spicy </title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* قفل تسريب المساحة يميناً ويساراً */
+        html, body {
+            max-width: 100vw;
+            overflow-x: hidden;
+            margin: 0;
+            padding: 0;
+            position: relative;
+        }
+    
+        /* إجبار كل العناصر تلتزم بعرض الشاشة */
+        * {
+            box-sizing: border-box !important;
+        }
+    
+        /* تصليح الجريد والسلايدر */
+        .menu-grid, #dynamic-slider-container {
+            width: 100% !important;
+            max-width: 100% !important;
+            margin-right: 0 !important;
+            margin-left: 0 !important;
+        }
+    </style>
     <style>
         :root { --main-red: #e74c3c; --gold: #f1c40f; --dark-black: #0a0a0a; --card-bg: #1a1a1a; }
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, sans-serif; -webkit-tap-highlight-color: transparent; }
@@ -52,6 +76,7 @@ body {
     padding: 15px 0;
     box-shadow: 0 4px 20px rgba(0,0,0,0.6); /* ظل خفيف عشان يفصل الهيدر عن المنيو */
 }
+
 
 
 .header i, .fa-shopping-basket, .fa-bars {
@@ -455,45 +480,76 @@ body {
         </div>
     </div>
 </header>
+<style>
+    /* 1. زيادة المساحة عشان الكلام مينطش فوق الصورة */
+    .slide-info-box {
+        padding-top: 60px !important; /* زودنا المساحة هنا */
+        margin-top: -40px !important; /* دخلنا الصندوق تحت الصورة أكتر للـ 3D */
+    }
 
+    /* 2. ضبط مكان الصورة عشان الوافل يظهر بوضوح */
+    .slider-img {
+        object-position: 50% 70% !important; /* ده هيرفع صورة الوافل لفوق شوية في الكادر */
+    }
 
-<!-- ========== شريط البحث (فوق الفيديو) ========== -->
-
-
-<!-- ========== الفيديو ========== -->
-
-<section id="dynamic-slider-container">
-    <div class="slideshow-box">
-        <video autoplay muted loop playsinline class="slider-video">
-            <source src="spicy-video.mp4" type="video/mp4">
-        </video>
+    /* 3. تنعيم الأزرار */
+    .slide-btns a {
+        border-width: 1px !important;
+        font-size: 13px !important;
+        letter-spacing: 0.5px;
+    }
+</style>
+<section id="dynamic-slider-container" style="position: relative; width: 100%; overflow: hidden; background: #1a0505;">
+    
+    <div class="slideshow-box" style="width: 100%; height: auto; aspect-ratio: 16 / 9; position: relative; border-radius: 20px; overflow: hidden; margin: 10px; width: calc(100% - 20px);">
+        <img src="slide1.jpg" class="slider-img" style="width: 100%; height: 100%; object-fit: cover; position: absolute; opacity: 1; transition: 1s;">
+        <img src="slide2.jpg" class="slider-img" style="width: 100%; height: 100%; object-fit: cover; position: absolute; opacity: 0; transition: 1s;">
+        <img src="slide3.jpg" class="slider-img" style="width: 100%; height: 100%; object-fit: cover; position: absolute; opacity: 0; transition: 1s;">
     </div>
-</section>
 
-
-
-
-<!-- <section id="dynamic-slider-container">
-    <div class="slideshow-box">
-        <img src="1.jpg" alt="صورة" class="slider-image">
-    </div>
-</section>    -->
-   
-
-
-      
-    <div class="slide-content-safe">
-        <div class="brand-line">
-            <span class="ar">اسبايسي</span>
-            <span class="divider">|</span>
-            <span class="en">SPICY</span>
+    <div class="slide-content-safe" style="text-align: center; padding: 20px 10px;">
+        <div class="brand-line" style="margin-bottom: 10px;">
+            <span id="dynamic-title" style="color: #E3B361; font-size: 24px; font-weight: bold; transition: 0.5s;">اسبايسي | SPICY</span>
         </div>
-        <p>أهم مطعم في الجيزة</p>
-        <div class="slide-btns">
-            <a href="#offers" class="btn-main">المنيو</a>
-            <a href="tel:01007148685" class="btn-sub">اطلب الآن</a>
+        
+        <p id="dynamic-desc" style="color: #F6E6CF; font-size: 16px; margin-bottom: 20px; transition: 0.5s;">أهم مطعم في الجيزة</p>
+        
+        <div class="slide-btns" style="display: flex; gap: 15px; justify-content: center;">
+            <a href="#offers" class="btn-main" style="background: #E3B361; color: #1a0505; padding: 10px 30px; border-radius: 25px; text-decoration: none; font-weight: bold; min-width: 120px;">المنيو</a>
+            <a href="tel:01007148685" class="btn-sub" style="border: 1px solid #fff; color: #fff; padding: 10px 30px; border-radius: 25px; text-decoration: none; font-weight: bold; min-width: 120px;">اطلب الآن</a>
         </div>
     </div>
+
+    <script>
+        (function() {
+            const imgs = document.querySelectorAll('#dynamic-slider-container .slider-img');
+            const title = document.getElementById('dynamic-title');
+            const desc = document.getElementById('dynamic-desc');
+            
+            const data = [
+                { t: "اسبايسي | SPICY", d: "سندوتش العملاق الجديد وصل! 🔥" },
+                { t: "بيتزا سبايسي المميزة 🍕", d: "طعم إيطالي أصلي في قلب الجيزة" },
+                { t: "وافل العملاق 🧇", d: "تحلية السعادة بميكس اللوتس والبستاشيو" }
+            ];
+
+            let index = 0;
+            setInterval(() => {
+                imgs[index].style.opacity = 0;
+                index = (index + 1) % imgs.length;
+                imgs[index].style.opacity = 1;
+                
+                // تحديث الكلام
+                title.style.opacity = 0;
+                desc.style.opacity = 0;
+                setTimeout(() => {
+                    title.innerText = data[index].t;
+                    desc.innerText = data[index].d;
+                    title.style.opacity = 1;
+                    desc.style.opacity = 1;
+                }, 500);
+            }, 3500);
+        })();
+    </script>
 </section>
 <section id="offers" class="menu-section" style="display: block; direction: rtl; text-align: right; padding: 20px 10px 40px; background-color: #1a0505;">
     
@@ -503,44 +559,40 @@ body {
 
     <div class="menu-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 15px; max-width: 1200px; margin: 0 auto;">
         
-        <!-- عرض العيلة (بتأثير النور) -->
-<div class="card-item" style="background: #2B090A; border: 2px solid #E3B361; box-shadow: 0 0 20px #E3B361, inset 0 0 10px #E3B361; animation: glow 1.5s infinite alternate; border-radius: 20px; padding: 12px; text-align: center; position: relative;">
-    <span style="position: absolute; top: -10px; right: -10px; background: linear-gradient(45deg, #E3B361, #fff); color: #1a0505; font-size: 11px; padding: 5px 12px; border-radius: 20px; font-weight: bold; box-shadow: 0 2px 10px rgba(0,0,0,0.5); z-index: 20;">الأكثر طلباً 🔥</span>
-    <div style="position: absolute; top: -8px; left: 8px; background: #e74c3c; color: #fff; padding: 2px 6px; border-radius: 10px; font-size: 10px; font-weight: bold;">وفر 100ج</div>
-    <h3 style="color: #F6E6CF; margin: 15px 0 5px; font-size: 1rem;">عرض العيلة</h3>
-    <p style="color: #bbb; font-size: 10px; margin-bottom: 8px;">10 كريبات زنجر + لتر بيبسي + بطاطس + كاتشب</p>
-    <div style="margin: 8px 0;">
-        <span style="text-decoration: line-through; color: #888; font-size: 11px;">950 ج</span>
-        <span style="color: #E3B361; font-size: 1.3rem; font-weight: bold; display: block;">850 ج.م</span>
-    </div>
-    <div class="qty-control" style="background: rgba(0,0,0,0.4); border-radius: 12px; padding: 5px; display: flex; align-items: center; justify-content: space-between;">
-        <button onclick="updateCart('عرض العيلة (10 زنجر + بيبسي + بطاطس)', 850, -1)" style="background: none; border: none; color: #F6E6CF; width: 28px; height: 28px; cursor: pointer; font-size: 18px;">-</button>
-        <span id="qty-عرض-العيلة" style="color: #E3B361; font-weight: bold;">0</span>
-        <button onclick="updateCart('عرض العيلة (10 زنجر + بيبسي + بطاطس)', 850, 1)" style="background: #E3B361; border: none; color: #1a0505; width: 28px; height: 28px; border-radius: 8px; cursor: pointer; font-size: 18px;">+</button>
-    </div>
-</div>
+        <div class="card-item" style="background: #2B090A; border: 2px solid #E3B361; border-radius: 20px; padding: 12px; text-align: center; position: relative;">
+            <div style="position: absolute; top: -8px; left: 8px; background: #e74c3c; color: #fff; padding: 2px 8px; border-radius: 10px; font-size: 11px; font-weight: bold; box-shadow: 0 0 10px rgba(231, 76, 60, 0.5);">وفر 100ج</div>
+            <h3 style="color: #F6E6CF; margin: 15px 0 5px; font-size: 1rem;">عرض العيلة</h3>
+            <p style="color: #bbb; font-size: 10px; margin-bottom: 8px;">10 كريبات زنجر + لتر بيبسي + بطاطس</p>
+            <div style="margin: 8px 0;">
+                <span style="text-decoration: line-through; color: #888; font-size: 11px;">950 ج</span>
+                <span style="color: #E3B361; font-size: 1.3rem; font-weight: bold; display: block;">850 ج.م</span>
+            </div>
+            <div class="qty-control" style="background: rgba(0,0,0,0.4); border-radius: 12px; padding: 5px; display: flex; align-items: center; justify-content: space-between;">
+                <button onclick="handleCounter('family', 'عرض العيلة (10 زنجر)', 850, -1)" style="background: none; border: none; color: #F6E6CF; width: 28px; height: 28px; font-size: 20px;">-</button>
+                <span id="qty-family" style="color: #E3B361; font-weight: bold;">0</span>
+                <button onclick="handleCounter('family', 'عرض العيلة (10 زنجر)', 850, 1)" style="background: #E3B361; border: none; color: #1a0505; width: 28px; height: 28px; border-radius: 8px; font-size: 18px;">+</button>
+            </div>
+        </div>
 
-<!-- عرض الصحاب (بتأثير النور) -->
-<div class="card-item" style="background: #2B090A; border: 2px solid #E3B361; box-shadow: 0 0 20px #E3B361, inset 0 0 10px #E3B361; animation: glow 1.5s infinite alternate; border-radius: 20px; padding: 12px; text-align: center; position: relative;">
-    <span style="position: absolute; top: -10px; right: -10px; background: linear-gradient(45deg, #E3B361, #fff); color: #1a0505; font-size: 11px; padding: 5px 12px; border-radius: 20px; font-weight: bold; box-shadow: 0 2px 10px rgba(0,0,0,0.5); z-index: 20;">الأكثر طلباً 🔥</span>
-    <div style="position: absolute; top: -8px; left: 8px; background: #e74c3c; color: #fff; padding: 2px 6px; border-radius: 10px; font-size: 10px; font-weight: bold;">وفر 50ج</div>
-    <h3 style="color: #F6E6CF; margin: 15px 0 5px; font-size: 1rem;">عرض الصحاب</h3>
-    <p style="color: #bbb; font-size: 10px; margin-bottom: 8px;">10 كريبات بانيه + لتر بيبسي + بطاطس + كاتشب</p>
-    <div style="margin: 8px 0;">
-        <span style="text-decoration: line-through; color: #888; font-size: 11px;">650 ج</span>
-        <span style="color: #E3B361; font-size: 1.3rem; font-weight: bold; display: block;">600 ج.م</span>
-    </div>
-    <div class="qty-control" style="background: rgba(0,0,0,0.4); border-radius: 12px; padding: 5px; display: flex; align-items: center; justify-content: space-between;">
-        <button onclick="updateCart('عرض الصحاب (10 بانيه + لتر بيبسي + بطاطس)', 600, -1)" style="background: none; border: none; color: #F6E6CF; width: 28px; height: 28px; cursor: pointer; font-size: 18px;">-</button>
-        <span id="qty-عرض-الصحاب" style="color: #E3B361; font-weight: bold;">0</span>
-        <button onclick="updateCart('عرض الصحاب (10 بانيه +  لتر بيبسي + بطاطس)', 600, 1)" style="background: #E3B361; border: none; color: #1a0505; width: 28px; height: 28px; border-radius: 8px; cursor: pointer; font-size: 18px;">+</button>
-    </div>
-</div>
-        <!-- العرض الأول (عمار) -->
+        <div class="card-item" style="background: #2B090A; border: 2px solid #E3B361; border-radius: 20px; padding: 12px; text-align: center; position: relative;">
+            <div style="position: absolute; top: -8px; left: 8px; background: #e74c3c; color: #fff; padding: 2px 8px; border-radius: 10px; font-size: 11px; font-weight: bold; box-shadow: 0 0 10px rgba(231, 76, 60, 0.5);">وفر 50ج</div>
+            <h3 style="color: #F6E6CF; margin: 15px 0 5px; font-size: 1rem;">عرض الصحاب</h3>
+            <p style="color: #bbb; font-size: 10px; margin-bottom: 8px;">10 كريبات بانيه + لتر بيبسي + بطاطس</p>
+            <div style="margin: 8px 0;">
+                <span style="text-decoration: line-through; color: #888; font-size: 11px;">650 ج</span>
+                <span style="color: #E3B361; font-size: 1.3rem; font-weight: bold; display: block;">600 ج.م</span>
+            </div>
+            <div class="qty-control" style="background: rgba(0,0,0,0.4); border-radius: 12px; padding: 5px; display: flex; align-items: center; justify-content: space-between;">
+                <button onclick="handleCounter('friends', 'عرض الصحاب (10 بانيه)', 600, -1)" style="background: none; border: none; color: #F6E6CF; width: 28px; height: 28px; font-size: 20px;">-</button>
+                <span id="qty-friends" style="color: #E3B361; font-weight: bold;">0</span>
+                <button onclick="handleCounter('friends', 'عرض الصحاب (10 بانيه)', 600, 1)" style="background: #E3B361; border: none; color: #1a0505; width: 28px; height: 28px; border-radius: 8px; font-size: 18px;">+</button>
+            </div>
+        </div>
+
         <div class="card-item" style="background: #2B090A; border: 1px solid #E3B361; border-radius: 20px; padding: 12px; text-align: center; position: relative;">
-            <div style="position: absolute; top: -8px; right: 8px; background: #e74c3c; color: #fff; padding: 2px 8px; border-radius: 10px; font-size: 10px; font-weight: bold;">وفر 20ج</div>
+            <div style="position: absolute; top: -8px; left: 8px; background: #e74c3c; color: #fff; padding: 2px 8px; border-radius: 10px; font-size: 11px; font-weight: bold; box-shadow: 0 0 10px rgba(231, 76, 60, 0.5);">وفر 20ج</div>
             <h3 style="color: #F6E6CF; margin: 15px 0 5px; font-size: 1rem;">العرض الأول (عمار)</h3>
-            <p style="color: #bbb; font-size: 10px; margin-bottom: 8px;">وافل + (اختيارك من الكريب)</p>
+            <p style="color: #bbb; font-size: 10px; margin-bottom: 8px;">وافل نوتيلا + (كريب بانيه أو كرسبي)</p>
             <div style="display: flex; gap: 5px; justify-content: center; margin-bottom: 8px;">
                 <button onclick="setAmarType('بانيه')" id="amar-opt-1" style="font-size: 9px; padding: 3px 8px; border-radius: 8px; background: #E3B361; color: #1a0505; border: none;">بانيه</button>
                 <button onclick="setAmarType('كرسبي')" id="amar-opt-2" style="font-size: 9px; padding: 3px 8px; border-radius: 8px; background: transparent; color: #F6E6CF; border: 1px solid #E3B361;">كرسبي</button>
@@ -550,15 +602,29 @@ body {
                 <span style="color: #E3B361; font-size: 1.3rem; font-weight: bold; display: block;">90 ج.م</span>
             </div>
             <div class="qty-control" style="background: rgba(0,0,0,0.4); border-radius: 12px; padding: 5px; display: flex; align-items: center; justify-content: space-between;">
-                <button onclick="changeAmarQty(-1)" style="background: none; border: none; color: #F6E6CF; width: 28px; height: 28px; cursor: pointer; font-size: 18px;">-</button>
-                <span id="qty-amar-val" style="color: #E3B361; font-weight: bold;">0</span>
-                <button onclick="changeAmarQty(1)" style="background: #E3B361; border: none; color: #1a0505; width: 28px; height: 28px; border-radius: 8px; cursor: pointer; font-size: 18px;">+</button>
+                <button onclick="changeAmarQty(-1)" style="background: none; border: none; color: #F6E6CF; width: 28px; height: 28px; font-size: 20px;">-</button>
+                <span id="qty-amar" style="color: #E3B361; font-weight: bold;">0</span>
+                <button onclick="changeAmarQty(1)" style="background: #E3B361; border: none; color: #1a0505; width: 28px; height: 28px; border-radius: 8px; font-size: 18px;">+</button>
             </div>
         </div>
 
-        <!-- العرض الثاني (جو) -->
         <div class="card-item" style="background: #2B090A; border: 1px solid #E3B361; border-radius: 20px; padding: 12px; text-align: center; position: relative;">
-            <div style="position: absolute; top: -8px; right: 8px; background: #e74c3c; color: #fff; padding: 2px 8px; border-radius: 10px; font-size: 10px; font-weight: bold;">وفر 20ج</div>
+            <div style="position: absolute; top: -8px; left: 8px; background: #e74c3c; color: #fff; padding: 2px 8px; border-radius: 10px; font-size: 11px; font-weight: bold; box-shadow: 0 0 10px rgba(231, 76, 60, 0.5);">وفر 20ج</div>
+            <h3 style="color: #F6E6CF; margin: 15px 0 5px; font-size: 1rem;">العرض الثالث (سبايسي)</h3>
+            <p style="color: #bbb; font-size: 10px; margin-bottom: 8px;">2 بيتزا فراخ وسط + صوصات</p>
+            <div style="margin: 8px 0;">
+                <span style="text-decoration: line-through; color: #888; font-size: 11px;">260 ج</span>
+                <span style="color: #E3B361; font-size: 1.3rem; font-weight: bold; display: block;">240 ج.م</span>
+            </div>
+            <div class="qty-control" style="background: rgba(0,0,0,0.4); border-radius: 12px; padding: 5px; display: flex; align-items: center; justify-content: space-between;">
+                <button onclick="handleCounter('spicy-third', 'العرض الثالث (2 بيتزا وسط)', 240, -1)" style="background: none; border: none; color: #F6E6CF; width: 28px; height: 28px; font-size: 20px;">-</button>
+                <span id="qty-spicy-third" style="color: #E3B361; font-weight: bold;">0</span>
+                <button onclick="handleCounter('spicy-third', 'العرض الثالث (2 بيتزا وسط)', 240, 1)" style="background: #E3B361; border: none; color: #1a0505; width: 28px; height: 28px; border-radius: 8px; font-size: 18px;">+</button>
+            </div>
+        </div>
+
+        <div class="card-item" style="background: #2B090A; border: 1px solid #E3B361; border-radius: 20px; padding: 12px; text-align: center; position: relative;">
+            <div style="position: absolute; top: -8px; left: 8px; background: #e74c3c; color: #fff; padding: 2px 8px; border-radius: 10px; font-size: 11px; font-weight: bold; box-shadow: 0 0 10px rgba(231, 76, 60, 0.5);">وفر 20ج</div>
             <h3 style="color: #F6E6CF; margin: 15px 0 5px; font-size: 1rem;">العرض الثاني (جو)</h3>
             <p style="color: #bbb; font-size: 10px; margin-bottom: 8px;">كريب زنجر + وافل + كانز</p>
             <div style="margin: 8px 0;">
@@ -566,31 +632,14 @@ body {
                 <span style="color: #E3B361; font-size: 1.3rem; font-weight: bold; display: block;">125 ج.م</span>
             </div>
             <div class="qty-control" style="background: rgba(0,0,0,0.4); border-radius: 12px; padding: 5px; display: flex; align-items: center; justify-content: space-between;">
-                <button onclick="updateCart('العرض الثاني (جو)', 125, -1)" style="background: none; border: none; color: #F6E6CF; width: 28px; height: 28px; cursor: pointer; font-size: 18px;">-</button>
-                <span id="qty-العرض-الثاني-جو" style="color: #E3B361; font-weight: bold;">0</span>
-                <button onclick="updateCart('العرض الثاني (جو)', 125, 1)" style="background: #E3B361; border: none; color: #1a0505; width: 28px; height: 28px; border-radius: 8px; cursor: pointer; font-size: 18px;">+</button>
+                <button onclick="handleCounter('joe', 'العرض الثاني (جو)', 125, -1)" style="background: none; border: none; color: #F6E6CF; width: 28px; height: 28px; font-size: 20px;">-</button>
+                <span id="qty-joe" style="color: #E3B361; font-weight: bold;">0</span>
+                <button onclick="handleCounter('joe', 'العرض الثاني (جو)', 125, 1)" style="background: #E3B361; border: none; color: #1a0505; width: 28px; height: 28px; border-radius: 8px; font-size: 18px;">+</button>
             </div>
         </div>
 
-        <!-- العرض الثالث (سبايسي) -->
         <div class="card-item" style="background: #2B090A; border: 1px solid #E3B361; border-radius: 20px; padding: 12px; text-align: center; position: relative;">
-            <div style="position: absolute; top: -8px; right: 8px; background: #e74c3c; color: #fff; padding: 2px 8px; border-radius: 10px; font-size: 10px; font-weight: bold;">وفر 20ج</div>
-            <h3 style="color: #F6E6CF; margin: 15px 0 5px; font-size: 1rem;">العرض الثالث (سبايسي)</h3>
-            <p style="color: #bbb; font-size: 10px; margin-bottom: 8px;">2 بيتزا فراخ وسط</p>
-            <div style="margin: 8px 0;">
-                <span style="text-decoration: line-through; color: #888; font-size: 11px;">260 ج</span>
-                <span style="color: #E3B361; font-size: 1.3rem; font-weight: bold; display: block;">240 ج.م</span>
-            </div>
-            <div class="qty-control" style="background: rgba(0,0,0,0.4); border-radius: 12px; padding: 5px; display: flex; align-items: center; justify-content: space-between;">
-                <button onclick="updateCart('العرض الثالث (سبايسي)', 240, -1)" style="background: none; border: none; color: #F6E6CF; width: 28px; height: 28px; cursor: pointer; font-size: 18px;">-</button>
-                <span id="qty-العرض-الثالث-سبايسي" style="color: #E3B361; font-weight: bold;">0</span>
-                <button onclick="updateCart('العرض الثالث (سبايسي)', 240, 1)" style="background: #E3B361; border: none; color: #1a0505; width: 28px; height: 28px; border-radius: 8px; cursor: pointer; font-size: 18px;">+</button>
-            </div>
-        </div>
-
-        <!-- العرض الرابع (عم عماد) -->
-        <div class="card-item" style="background: #2B090A; border: 1px solid #E3B361; border-radius: 20px; padding: 12px; text-align: center; position: relative;">
-            <div style="position: absolute; top: -8px; right: 8px; background: #e74c3c; color: #fff; padding: 2px 8px; border-radius: 10px; font-size: 10px; font-weight: bold;">وفر 40ج</div>
+            <div style="position: absolute; top: -8px; left: 8px; background: #e74c3c; color: #fff; padding: 2px 8px; border-radius: 10px; font-size: 11px; font-weight: bold; box-shadow: 0 0 10px rgba(231, 76, 60, 0.5);">وفر 40ج</div>
             <h3 style="color: #F6E6CF; margin: 15px 0 5px; font-size: 1rem;">العرض الرابع (عم عماد)</h3>
             <p style="color: #bbb; font-size: 10px; margin-bottom: 8px;">بيتزا فراخ كبيرة + تشيكن رانش</p>
             <div style="margin: 8px 0;">
@@ -598,343 +647,449 @@ body {
                 <span style="color: #E3B361; font-size: 1.3rem; font-weight: bold; display: block;">280 ج.م</span>
             </div>
             <div class="qty-control" style="background: rgba(0,0,0,0.4); border-radius: 12px; padding: 5px; display: flex; align-items: center; justify-content: space-between;">
-                <button onclick="updateCart('العرض الرابع (عم عماد)', 280, -1)" style="background: none; border: none; color: #F6E6CF; width: 28px; height: 28px; cursor: pointer; font-size: 18px;">-</button>
-                <span id="qty-العرض-الرابع" style="color: #E3B361; font-weight: bold;">0</span>
-                <button onclick="updateCart('العرض الرابع (عم عماد)', 280, 1)" style="background: #E3B361; border: none; color: #1a0505; width: 28px; height: 28px; border-radius: 8px; cursor: pointer; font-size: 18px;">+</button>
+                <button onclick="handleCounter('emad', 'العرض الرابع (عم عماد)', 280, -1)" style="background: none; border: none; color: #F6E6CF; width: 28px; height: 28px; font-size: 20px;">-</button>
+                <span id="qty-emad" style="color: #E3B361; font-weight: bold;">0</span>
+                <button onclick="handleCounter('emad', 'العرض الرابع (عم عماد)', 280, 1)" style="background: #E3B361; border: none; color: #1a0505; width: 28px; height: 28px; border-radius: 8px; font-size: 18px;">+</button>
             </div>
         </div>
 
     </div>
 
     <script>
-        let selectedAmarType = "بانيه";
+        function handleCounter(id, name, price, change) {
+            const qtyElement = document.getElementById('qty-' + id);
+            if (!qtyElement) return;
 
+            let currentQty = parseInt(qtyElement.innerText) || 0;
+            let nextQty = currentQty + change;
+
+            if (nextQty >= 0) {
+                qtyElement.innerText = nextQty;
+                if (typeof updateCart === 'function') {
+                    updateCart(name, price, change);
+                }
+            }
+        }
+
+        let selectedAmarType = "بانيه";
         function setAmarType(type) {
             selectedAmarType = type;
-            const btn1 = document.getElementById('amar-opt-1');
-            const btn2 = document.getElementById('amar-opt-2');
-            if(type === 'بانيه') {
-                btn1.style.background = '#E3B361'; btn1.style.color = '#1a0505';
-                btn2.style.background = 'transparent'; btn2.style.color = '#F6E6CF';
-            } else {
-                btn2.style.background = '#E3B361'; btn2.style.color = '#1a0505';
-                btn1.style.background = 'transparent'; btn1.style.color = '#F6E6CF';
-            }
+            document.getElementById('amar-opt-1').style.background = (type === 'بانيه') ? '#E3B361' : 'transparent';
+            document.getElementById('amar-opt-1').style.color = (type === 'بانيه') ? '#1a0505' : '#F6E6CF';
+            document.getElementById('amar-opt-2').style.background = (type === 'كرسبي') ? '#E3B361' : 'transparent';
+            document.getElementById('amar-opt-2').style.color = (type === 'كرسبي') ? '#1a0505' : '#F6E6CF';
         }
 
         function changeAmarQty(change) {
-            const offerTitle = "عرض عمار (" + selectedAmarType + " + وافل)";
-            const price = 90;
-            const qVal = document.getElementById('qty-amar-val');
-            let current = parseInt(qVal.innerText);
-            let next = current + change;
-            if (next >= 0) {
-                qVal.innerText = next;
-                if (typeof updateCart === 'function') {
-                    updateCart(offerTitle, price, change);
-                }
-            }
+            handleCounter('amar', "عرض عمار (" + selectedAmarType + ")", 90, change);
         }
-
-         
     </script>
-
 </section>
-    <section id="pizza" class="menu-section pizza" style="display: none; direction: rtl; text-align: right; padding: 20px 10px 40px; background-color: #1a0505;">
-    
-        <h2 class="section-header" style="text-align: center; color: #E3B361; margin-bottom: 30px; font-size: 28px; font-family: 'Segoe UI', Tahoma, sans-serif;">
-            <i class="fas fa-pizza-slice"></i> منيو البيتزا الإيطالية 🔥
-        </h2>
-    
-        <div id="pizza-container" class="menu-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 15px; max-width: 1200px; margin: 0 auto;">
-            </div>
-    
-        <script>
-            (function() {
-                // بيانات المنيو - مرتبة ونظيفة
-                const pizzaData = [
-                    { id: "pz1", name: "بيتزا مارجريتا", sizes: { "وسط": 90, "كبير": 110 } },
-                    { id: "pz2", name: "بيتزا خضروات", sizes: { "وسط": 90, "كبير": 110 } },
-                    { id: "pz3", name: "بيتزا بانيه قطع", sizes: { "وسط": 90, "كبير": 110 } },
-                    { id: "pz4", name: "بيتزا مشروم", sizes: { "وسط": 90, "كبير": 110 } },
-                    { id: "pz5", name: "بيتزا سلامي", sizes: { "وسط": 120, "كبير": 140 } },
-                    { id: "pz6", name: "بيتزا عشاق الجبنة", sizes: { "وسط": 100, "كبير": 120 } },
-                    { id: "pz7", name: "بيتزا لحمة مفرومة", sizes: { "وسط": 100, "كبير": 120 } },
-                    { id: "pz8", name: "بيتزا سجق شرقي", sizes: { "وسط": 100, "كبير": 120 } },
-                    { id: "pz9", name: "بيتزا سوسيس (هوت دوج)", sizes: { "وسط": 100, "كبير": 120 } },
-                    { id: "pz10", name: "بيتزا تونة", sizes: { "وسط": 120, "كبير": 140 } },
-                    { id: "pz11", name: "بيتزا بسطرمة", sizes: { "وسط": 120, "كبير": 140 } },
-                    { id: "pz12", name: "بيتزا شاورمة فراخ", sizes: { "وسط": 130, "كبير": 150 } },
-                    { id: "pz13", name: "بيتزا شاورمة لحمة", sizes: { "وسط": 130, "كبير": 150 } },
-                    { id: "pz14", name: "بيتزا شيش طاووق", sizes: { "وسط": 130, "كبير": 150 } },
-                    { id: "pz15", name: "بيتزا فاهيتا ميكسيكان", sizes: { "وسط": 130, "كبير": 150 } },
-                    { id: "pz16", name: "بيتزا تشيكن رانش", sizes: { "وسط": 140, "كبير": 170 } },
-                    { id: "pz17", name: "بيتزا تشيكن باربكيو", sizes: { "وسط": 140, "كبير": 170 } },
-                    { id: "pz18", name: "بيتزا الملكة", price: 170, ing: "سوسيس - زنجر + مدخنة", isNew: true },
-                    { id: "pz19", name: "بيتزا عمار", price: 160, ing: "سوسيس + سلامي" },
-                    { id: "pz20", name: "بيتزا الكينج", sizes: { "وسط": 150, "كبير": 200 }, ing: "شاورمة لحمة + شاورمة فراخ" },
-                    { id: "pz21", name: "سي رانش", sizes: { "وسط": 150, "كبير": 180 }, ing: "زنجر + رانش" },
-                    { id: "pz22", name: "بيتزا ميلانو", price: 170, ing: "فراخ - زنجر + سلامي" },
-                    { id: "pz23", name: "زنجر سوبريم", sizes: { "وسط": 140, "كبير": 170 } },
-                    { id: "pz24", name: "ميكس لحوم", sizes: { "وسط": 120, "كبير": 150 } },
-                    { id: "pz25", name: "ميكس فراخ", sizes: { "وسط": 140, "كبير": 170 } },
-                    { id: "pz26", name: "بيتزا جمبري", sizes: { "وسط": 180, "كبير": 220 } },
-                    { id: "pz27", name: "بيتزا فواكة البحر", sizes: { "وسط": 200, "كبير": 240 } },
-                    { id: "pz28", name: "سوبر بريم فراخ", price: 170 },
-                    { id: "pz29", name: "تشكن سبايسي", price: 170, ing: "فراخ + مشروم + زنجر + سبايسي" },
-                    { id: "pz30", name: "بيتزا جمبريكا", sizes: { "وسط": 200, "كبير": 240 }, ing: "جمبرى + رانش" }
-                ];
-    
-                const pizzaContainer = document.getElementById('pizza-container');
-                const selectedPizzas = {}; // لحفظ الحجم المختار لكل بيتزا
-    
-                pizzaData.forEach(item => {
-                    let sizeSelection = '';
-                    let startingPrice = item.price || (item.sizes ? Object.values(item.sizes)[0] : 0);
-                    
-                    // تحديد الحجم الافتراضي عند التحميل
-                    selectedPizzas[item.id] = {
-                        name: item.name + (item.sizes ? ` (${Object.keys(item.sizes)[0]})` : ""),
-                        price: startingPrice
-                    };
-    
-                    if (item.sizes) {
-                        sizeSelection = `<div class="pizza-sizes" style="display: flex; gap: 5px; justify-content: center; margin-bottom: 12px;">
-                            ${Object.entries(item.sizes).map(([sz, pr], i) => `
-                                <button onclick="handlePizzaSize('${item.id}', '${sz}', ${pr}, '${item.name}')" 
-                                        class="pz-btn-${item.id} ${i === 0 ? 'active' : ''}" 
-                                        style="font-size: 10px; padding: 4px 8px; border-radius: 6px; cursor: pointer; border: 1px solid #E3B361; 
-                                               background: ${i === 0 ? '#E3B361' : 'transparent'}; 
-                                               color: ${i === 0 ? '#1a0505' : '#F6E6CF'}; transition: 0.2s;">
-                                    ${sz}
-                                </button>
-                            `).join('')}
-                        </div>`;
-                    } else {
-                        sizeSelection = `<div style="height: 25px; color: #E3B361; font-size: 11px; text-align: center;">حجم عائلي</div>`;
-                    }
-    
-                    let info = item.ing ? `<p style="color: #888; font-size: 10px; margin-bottom: 10px; min-height: 25px;">${item.ing}</p>` : `<div style="height: 35px;"></div>`;
-    
-                    pizzaContainer.innerHTML += `
-                        <div class="card-item" style="background: #2B090A; border-radius: 15px; padding: 12px; border: 1px solid rgba(227,179,97,0.1); position: relative; display: flex; flex-direction: column;">
-                            ${item.isNew ? '<div style="position: absolute; top: 8px; left: 8px; background: #E3B361; color: #1a0505; padding: 2px 6px; font-size: 9px; font-weight: bold; border-radius: 4px;">جديد</div>' : ''}
-                            <h3 style="color: #F6E6CF; font-size: 1rem; margin: 5px 0; min-height: 35px;">${item.name}</h3>
-                            ${info}
-                            ${sizeSelection}
-                            <div style="text-align: center; margin-bottom: 10px;">
-                                <span id="pz-prc-${item.id}" style="color: #E3B361; font-weight: bold; font-size: 1.2rem;">${startingPrice} ج.م</span>
-                            </div>
-                            <div class="qty-control" style="background: rgba(0,0,0,0.3); border-radius: 10px; padding: 5px; display: flex; align-items: center; justify-content: space-between;">
-                                <button onclick="handlePizzaQty('${item.id}', -1)" style="color: #F6E6CF; background: none; border: none; width: 30px; height: 30px; cursor: pointer; font-size: 18px;">-</button>
-                                <span id="pz-q-${item.id}" style="color: #E3B361; font-weight: bold;">0</span>
-                                <button onclick="handlePizzaQty('${item.id}', 1)" style="color: #1a0505; background: #E3B361; border: none; width: 30px; height: 30px; border-radius: 6px; cursor: pointer; font-size: 18px;">+</button>
-                            </div>
-                        </div>`;
-                });
-    
-                // دوال التشغيل - بأسماء فريدة لعدم التداخل
-                window.handlePizzaSize = function(id, size, price, name) {
-                    document.getElementById(`pz-prc-${id}`).innerText = price + ' ج.م';
-                    selectedPizzas[id] = { name: `${name} (${size})`, price: price };
-                    // تغيير شكل الزراير
-                    document.querySelectorAll(`.pz-btn-${id}`).forEach(b => {
-                        if(b.innerText.trim() === size) { b.style.background = '#E3B361'; b.style.color = '#1a0505'; }
-                        else { b.style.background = 'transparent'; b.style.color = '#F6E6CF'; }
-                    });
-                };
-    
-                window.handlePizzaQty = function(id, change) {
-                    const pizza = selectedPizzas[id];
-                    const qtySpan = document.getElementById(`pz-q-${id}`);
-                    let currentQty = parseInt(qtySpan.innerText);
-                    let newQty = currentQty + change;
-    
-                    if (newQty >= 0) {
-                        qtySpan.innerText = newQty;
-                        // استدعاء دالة السلة الأصلية الموجودة في موقعك
-                        if (typeof updateCart === 'function') {
-                            updateCart(pizza.name, pizza.price, change);
-                        }
-                    }
-                };
-            })();
-        </script>
-    </section>
+<section id="pizza" class="menu-section pizza" style="display: none; direction: rtl; text-align: right; padding: 20px 10px 40px; background-color: #1a0505;">
 
+    <h2 class="section-header" style="text-align: center; color: #E3B361; margin-bottom: 30px; font-size: 28px; font-family: 'Segoe UI', Tahoma, sans-serif;">
+        <i class="fas fa-pizza-slice"></i> منيو البيتزا الإيطالية 🔥
+    </h2>
 
-    <section id="crepes" class="menu-section" style="display: none; direction: rtl; text-align: right; padding: 20px 10px 40px; background-color: #1a0505;">
-    
-        <h2 class="section-header" style="text-align: center; color: #E3B361; margin-bottom: 30px; font-size: 28px; font-family: 'Segoe UI', Tahoma, sans-serif;">
-            <i class="fas fa-box-open"></i> قسم الكريبات 🔥
-        </h2>
-        
-        <div class="menu-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 15px; max-width: 1200px; margin: 0 auto;">
-        </div>
-    
-        <script>
-            (function() {
-                const items = [
-    { id: "1", name: "كريب بانيه بارد", price: 60, ing: "" },
-    { id: "2", name: "كريب كرسبي بانيه حار", price: 60, ing: "" },
-    { id: "3", name: "كريب بطاطسيكو", price: 70, ing: "بانيه + بطاطس" },
-    { id: "4", name: "كريب سوبر جرانش", price: 70, ing: "بانيه + رومي مدخن" },
-    { id: "5", name: "كريب كفتة مشوية", price: 60, ing: "" },
-    { id: "6", name: "كريب كبدة إسكندراني", price: 60, ing: "" },
-    { id: "7", name: "كريب برجر لحمة", price: 70, ing: "" },
-    { id: "8", name: "كريب تشيكن برجر", price: 70, ing: "" },
-    { id: "9", name: "كريب ميكس جبن", price: 60, ing: "موزاريلا + رومي + مثلثات + زيتون + خضار" },
-    { id: "10", name: "كريب هوت دوج (سوسيس)", price: 60, ing: "" },
-    { id: "11", name: "كريب شاورمة فراخ", price: 85, ing: "" },
-    { id: "12", name: "كريب شاورمة لحمة", price: 85, ing: "" },
-    { id: "13", name: "كريب شيش طاووق", price: 85, ing: "" },
-    { id: "14", name: "كريب F 35", price: 100, ing: "زنجر + فراخ + بطاطس + روزبيف" },
-    { id: "15", name: "كريب F16", price: 85, ing: "زنجر باربيكيو + بطاطس + صوص سبايسي" },
-    { id: "16", name: "كريب F 122", price: 85, ing: "زنجر باربيكيو + بطاطس + صوص سبايسي" },
-    { id: "17", name: "كريب قنبلة", price: 100, ing: "سوسيس مدخن + بانيه + برجر" },
-    { id: "18", name: "كريب إيطاليانو", price: 90, ing: "زنجر + مدخن + باربيكيو" },
-    { id: "19", name: "كريب فاهيتا ميكسيكان", price: 90, ing: "فراخ + مشروم + باربيكيو" },
-    { id: "20", name: "كريب فاهيتا لحمة", price: 100, ing: "لحمة + مشروم + باربيكيو" },
-    { id: "21", name: "كريب ميكس لحمة", price: 100, ing: "كفتة + برجر + هوت دوج + مشروم" },
-    { id: "22", name: "كريب ميكس تربو", price: 100, ing: "كفتة + برجر + هوت دوج + سجق" },
-    { id: "23", name: "كريب تشيكن لارج", price: 100, ing: "زنجر + شيش + رومي" },
-    { id: "24", name: "كريب تشيكن رويال", price: 100, ing: "زنجر + شيش + بطاطس" },
-    { id: "25", name: "كريب عمار", price: 100, ing: "زنجر + شيش + بانيه" },
-    { id: "26", name: "كريب ميكس فراخ", price: 100, ing: "فراخ  + بانيه + زنجر + صوص خاص" },
-    { id: "27", name: "كريب سبايسي", price: 100, ing: "مشروم + بانيه + زنجر + باربيكيو" },
-    { id: "28", name: "كريب حركات", price: 100, ing: "كرسبي بانيه + شيش + بطاطس" },
-    { id: "29", name: "كريب جانجو", price: 100, ing: "سوسيس + بانيه + شيش" },
-    { id: "30", name: "كريب جولد ميكس", price: 100, ing: "سوسيس + زنجر + شيدر + صوص تايجر" },
-    { id: "31", name: "كريب ميكس شاورما", price: 100, ing: "شاورما لحمة + شاورما فراخ" },
-    { id: "32", name: "كريب جمبري", price: 150, ing: "" },
-    { id: "33", name: "كريب سوبر فياجرا", price: 170, ing: "جمبري + كابوريا + صوص خاص" },
-    { id: "34", name: "كريب 888", price: 110, ing: "سوسيس + زنجر + مدخن + فراخ + برجر" },
-    { id: "35", name: "كريب 777", price: 110, ing: "سوسيس + زنجر + مدخن + فراخ + برجر" },
-    { id: "36", name: "كريب 999", price: 120, ing: "بسنت + باربيكيو + بطاطس + مدخن + فراخ" },
-    { id: "37", name: "كريب S 17", price: 100, ing: "بانيه + زنجر + برجر+ بطاطس + صوص + برباكيو " },
-    { id: "38", name: "كريب S 18", price: 100, ing: " بانيه+ زنجر + برجر+ بطاطس  + صوص برباكيو  + سلامي + كونو " },
-    { id: "39", name: "كريب زنجر سوبر بريم", price: 80, ing: "" }
-];
-    
-                const grid = document.querySelector('#crepes .menu-grid');
-                const selectedItems = {};
-    
-                function makeSafeId(name) {
-                    return String(name).trim().replace(/\s+/g, '-').replace(/[^\w\u0600-\u06FF-]/g, '');
+    <style>
+        @keyframes borderGlow {
+            0% { box-shadow: 0 0 5px #ff0000; border-color: #ff0000; }
+            50% { box-shadow: 0 0 20px #ff4d4d; border-color: #ff4d4d; }
+            100% { box-shadow: 0 0 5px #ff0000; border-color: #ff0000; }
+        }
+        .special-card {
+            animation: borderGlow 2s infinite ease-in-out;
+            border: 2px solid #ff0000 !important;
+            transform: scale(1.02); /* تكبير بسيط لتمييزه */
+        }
+        .new-label-red {
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #ff0000;
+            color: white;
+            padding: 2px 15px;
+            font-size: 12px;
+            font-weight: bold;
+            border-radius: 5px;
+            box-shadow: 0 0 10px #ff0000;
+            z-index: 10;
+        }
+    </style>
+
+    <div id="pizza-container" class="menu-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 20px; max-width: 1200px; margin: 0 auto;">
+    </div>
+
+    <script>
+        (function() {
+            const pizzaData = [
+                // الكارت الجديد المطلوب (أول واحد)
+                { id: "pz_giant", 
+                    name: "بيتزا العملاق", 
+                    price: 200, 
+                    ing: "شاورما فراخ - شاورما لحمه - سوسيس", 
+                    isSpecial: true},
+                
+                { id: "pz1", name: "بيتزا مارجريتا", sizes: { "وسط": 90, "كبير": 110 } },
+                { id: "pz2", name: "بيتزا خضروات", sizes: { "وسط": 90, "كبير": 110 } },
+                { id: "pz3", name: "بيتزا بانيه قطع", sizes: { "وسط": 90, "كبير": 110 } },
+                { id: "pz4", name: "بيتزا مشروم", sizes: { "وسط": 90, "كبير": 110 } },
+                { id: "pz5", name: "بيتزا سلامي", sizes: { "وسط": 120, "كبير": 140 } },
+                { id: "pz6", name: "بيتزا عشاق الجبنة", sizes: { "وسط": 100, "كبير": 120 } },
+                { id: "pz7", name: "بيتزا لحمة مفرومة", sizes: { "وسط": 100, "كبير": 120 } },
+                { id: "pz8", name: "بيتزا سجق شرقي", sizes: { "وسط": 100, "كبير": 120 } },
+                { id: "pz9", name: "بيتزا سوسيس (هوت دوج)", sizes: { "وسط": 100, "كبير": 120 } },
+                { id: "pz10", name: "بيتزا تونة", sizes: { "وسط": 120, "كبير": 140 } },
+                { id: "pz11", name: "بيتزا بسطرمة", sizes: { "وسط": 120, "كبير": 140 } },
+                { id: "pz12", name: "بيتزا شاورمة فراخ", sizes: { "وسط": 130, "كبير": 150 } },
+                { id: "pz13", name: "بيتزا شاورمة لحمة", sizes: { "وسط": 130, "كبير": 150 } },
+                { id: "pz14", name: "بيتزا شيش طاووق", sizes: { "وسط": 130, "كبير": 150 } },
+                { id: "pz15", name: "بيتزا فاهيتا ميكسيكان", sizes: { "وسط": 130, "كبير": 150 } },
+                { id: "pz16", name: "بيتزا تشيكن رانش", sizes: { "وسط": 140, "كبير": 170 } },
+                { id: "pz17", name: "بيتزا تشيكن باربكيو", sizes: { "وسط": 140, "كبير": 170 } },
+                { id: "pz18", name: "بيتزا الملكة", price: 170, ing: "سوسيس - زنجر + مدخنة" },
+                { id: "pz19", name: "بيتزا عمار", price: 160, ing: "سوسيس + سلامي" },
+                { id: "pz20", name: "بيتزا الكينج", sizes: { "وسط": 150, "كبير": 200 }, ing: "شاورمة لحمة + شاورمة فراخ" },
+                { id: "pz21", name: "سي رانش", sizes: { "وسط": 150, "كبير": 180 }, ing: "زنجر + رانش" },
+                { id: "pz22", name: "بيتزا ميلانو", price: 170, ing: "فراخ - زنجر + سلامي" },
+                { id: "pz23", name: "زنجر سوبريم", sizes: { "وسط": 140, "كبير": 170 } },
+                { id: "pz24", name: "ميكس لحوم", sizes: { "وسط": 120, "كبير": 150 } },
+                { id: "pz25", name: "ميكس فراخ", sizes: { "وسط": 140, "كبير": 170 } },
+                { id: "pz26", name: "بيتزا جمبري", sizes: { "وسط": 180, "كبير": 220 } },
+                { id: "pz27", name: "بيتزا فواكة البحر", sizes: { "وسط": 200, "كبير": 240 } },
+                { id: "pz28", name: "سوبر بريم فراخ", price: 170 },
+                { id: "pz29", name: "تشكن سبايسي", price: 170, ing: "فراخ + مشروم + زنجر + سبايسي" },
+                { id: "pz30", name: "بيتزا جمبريكا", sizes: { "وسط": 200, "كبير": 240 }, ing: "جمبرى + رانش" }
+            ];
+
+            const pizzaContainer = document.getElementById('pizza-container');
+            const selectedPizzas = {};
+
+            pizzaData.forEach(item => {
+                let sizeSelection = '';
+                let startingPrice = item.price || (item.sizes ? Object.values(item.sizes)[0] : 0);
+                
+                selectedPizzas[item.id] = {
+                    name: item.name + (item.sizes ? ` (${Object.keys(item.sizes)[0]})` : ""),
+                    price: startingPrice
+                };
+
+                if (item.sizes) {
+                    sizeSelection = `<div class="pizza-sizes" style="display: flex; gap: 5px; justify-content: center; margin-bottom: 12px;">
+                        ${Object.entries(item.sizes).map(([sz, pr], i) => `
+                            <button onclick="handlePizzaSize('${item.id}', '${sz}', ${pr}, '${item.name}')" 
+                                    class="pz-btn-${item.id} ${i === 0 ? 'active' : ''}" 
+                                    style="font-size: 10px; padding: 4px 8px; border-radius: 6px; cursor: pointer; border: 1px solid #E3B361; 
+                                            background: ${i === 0 ? '#E3B361' : 'transparent'}; 
+                                            color: ${i === 0 ? '#1a0505' : '#F6E6CF'}; transition: 0.2s;">
+                                ${sz}
+                            </button>
+                        `).join('')}
+                    </div>`;
+                } else {
+                    sizeSelection = `<div style="height: 25px; color: #E3B361; font-size: 11px; text-align: center;">حجم عائلي</div>`;
                 }
-    
-                items.forEach(item => {
-                    const safeId = makeSafeId(item.name);
-                    selectedItems[safeId] = { name: item.name, price: item.price };
-    
-                    const ingredientHtml = item.ing
-                        ? `<p style="font-size: 12px; color: #bbb; line-height: 1.4; min-height: 45px; margin-bottom: 12px; text-align: right; background: rgba(0,0,0,0.2); padding: 8px; border-radius: 8px;">${item.ing}</p>`
-                        : `<div style="min-height: 57px;"></div>`;
-    
-                    grid.innerHTML += `
-                        <div class="card-item" style="position: relative; border-radius: 20px; background: #2B090A; padding: 15px; display: flex; flex-direction: column; border: 1.5px solid #E3B361; transition: 0.3s; box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
-                            <div style="position: absolute; top: 10px; left: 10px; background: #e74c3c; color: white; padding: 2px 8px; font-size: 10px; font-weight: bold; border-radius: 5px; z-index: 10; border: 1px solid #E3B361;">10% OFF</div>
-                            <div class="item-info" style="margin-top: 15px;">
-                                <h3 style="margin-bottom: 8px; font-size: 1.1rem; color: #F6E6CF; text-align: right; min-height: 25px;">${item.name}</h3>
-                                ${ingredientHtml}
-                            </div>
-                            <div class="price-box" style="display: flex; flex-direction: column; align-items: center; margin-bottom: 12px; border-top: 1px solid rgba(227,179,97,0.1); padding-top: 10px;">
-                                <span style="text-decoration: line-through; color: #888; font-size: 12px;">${Math.round(item.price*1.1)} ج</span>
-                                <span style="color: #E3B361; font-size: 1.4rem; font-weight: bold;">${item.price} ج.م</span>
-                            </div>
-                            <div class="qty-control" style="background: rgba(0,0,0,0.4); border-radius: 12px; padding: 6px; display: flex; align-items: center; justify-content: space-between; border: 1px solid rgba(227,179,97,0.1);">
-                                <button onclick="handleCrepeQty('${safeId}', -1)" style="color: #F6E6CF; background: rgba(255,255,255,0.05); border: none; width: 32px; height: 32px; border-radius: 8px; cursor: pointer; font-size: 20px;">-</button>
-                                <span id="qty-${safeId}" style="color: #E3B361; font-weight: bold;">0</span>
-                                <button onclick="handleCrepeQty('${safeId}', 1)" style="color: #1a0505; background: #E3B361; border: none; width: 32px; height: 32px; border-radius: 8px; cursor: pointer; font-size: 20px;">+</button>
-                            </div>
-                        </div>
-                    `;
-                });
-    
-                window.handleCrepeQty = function(id, change) {
-                    const item = selectedItems[id];
-                    const qtySpan = document.getElementById(`qty-${id}`);
-                    let currentQty = parseInt(qtySpan.innerText);
-                    let newQty = currentQty + change;
-                    if(newQty >= 0) {
-                        qtySpan.innerText = newQty;
-                        if(typeof updateCart === 'function') {
-                            updateCart(item.name, item.price, change);
-                        }
-                    }
-                };
-            })();
-        </script>
-    </section>
 
+                let info = item.ing ? `<p style="color: #888; font-size: 10px; margin-bottom: 10px; min-height: 25px;">${item.ing}</p>` : `<div style="height: 35px;"></div>`;
+
+                // إضافة الـ Class "special-card" والـ Label الأحمر لو العنصر isSpecial
+                pizzaContainer.innerHTML += `
+                    <div class="card-item ${item.isSpecial ? 'special-card' : ''}" style="background: #2B090A; border-radius: 15px; padding: 12px; border: 1px solid rgba(227,179,97,0.1); position: relative; display: flex; flex-direction: column; margin-top: 10px;">
+                        ${item.isSpecial ? '<div class="new-label-red">جديد</div>' : ''}
+                        <h3 style="color: #F6E6CF; font-size: 1rem; margin: 5px 0; min-height: 35px;">${item.name}</h3>
+                        ${info}
+                        ${sizeSelection}
+                        <div style="text-align: center; margin-bottom: 10px;">
+                            <span id="pz-prc-${item.id}" style="color: #E3B361; font-weight: bold; font-size: 1.2rem;">${startingPrice} ج.م</span>
+                        </div>
+                        <div class="qty-control" style="background: rgba(0,0,0,0.3); border-radius: 10px; padding: 5px; display: flex; align-items: center; justify-content: space-between;">
+                            <button onclick="handlePizzaQty('${item.id}', -1)" style="color: #F6E6CF; background: none; border: none; width: 30px; height: 30px; cursor: pointer; font-size: 18px;">-</button>
+                            <span id="pz-q-${item.id}" style="color: #E3B361; font-weight: bold;">0</span>
+                            <button onclick="handlePizzaQty('${item.id}', 1)" style="color: #1a0505; background: #E3B361; border: none; width: 30px; height: 30px; border-radius: 6px; cursor: pointer; font-size: 18px;">+</button>
+                        </div>
+                    </div>`;
+            });
+
+            window.handlePizzaSize = function(id, size, price, name) {
+                document.getElementById(`pz-prc-${id}`).innerText = price + ' ج.م';
+                selectedPizzas[id] = { name: `${name} (${size})`, price: price };
+                document.querySelectorAll(`.pz-btn-${id}`).forEach(b => {
+                    if(b.innerText.trim() === size) { b.style.background = '#E3B361'; b.style.color = '#1a0505'; }
+                    else { b.style.background = 'transparent'; b.style.color = '#F6E6CF'; }
+                });
+            };
+
+            window.handlePizzaQty = function(id, change) {
+                const pizza = selectedPizzas[id];
+                const qtySpan = document.getElementById(`pz-q-${id}`);
+                let currentQty = parseInt(qtySpan.innerText);
+                let newQty = currentQty + change;
+
+                if (newQty >= 0) {
+                    qtySpan.innerText = newQty;
+                    if (typeof updateCart === 'function') {
+                        updateCart(pizza.name, pizza.price, change);
+                    }
+                }
+            };
+        })();
+    </script>
+</section>
+
+
+<section id="crepes" class="menu-section" style="display: none; direction: rtl; text-align: right; padding: 20px 10px 40px; background-color: #1a0505;">
+    
+    <style>
+        @keyframes crepeGlow {
+            0% { box-shadow: 0 0 5px #ff0000; border-color: #ff0000; }
+            50% { box-shadow: 0 0 20px #ff4d4d; border-color: #ff4d4d; }
+            100% { box-shadow: 0 0 5px #ff0000; border-color: #ff0000; }
+        }
+        .special-crepe {
+            animation: crepeGlow 2s infinite ease-in-out;
+            border: 2px solid #ff0000 !important;
+            transform: scale(1.02);
+            z-index: 5;
+        }
+        .new-badge-red {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #ff0000;
+            color: white;
+            padding: 2px 15px;
+            font-size: 12px;
+            font-weight: bold;
+            border-radius: 5px;
+            box-shadow: 0 0 10px #ff0000;
+            z-index: 11;
+        }
+    </style>
+
+    <h2 class="section-header" style="text-align: center; color: #E3B361; margin-bottom: 30px; font-size: 28px; font-family: 'Segoe UI', Tahoma, sans-serif;">
+        <i class="fas fa-box-open"></i> قسم الكريبات 🔥
+    </h2>
+    
+    <div class="menu-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 15px; max-width: 1200px; margin: 0 auto;">
+    </div>
+
+    <script>
+        (function() {
+            const items = [
+                // كريب العملاق الجديد في البداية
+                { id: "giant_cr", name: "كريب العملاق", price: 100, ing: "زنجر - بانيه - سوسيس - بطاطس", isNew: true },
+                
+                { id: "1", name: "كريب بانيه بارد", price: 60, ing: "" },
+                { id: "2", name: "كريب كرسبي بانيه حار", price: 60, ing: "" },
+                { id: "3", name: "كريب بطاطسيكو", price: 70, ing: "بانيه + بطاطس" },
+                { id: "4", name: "كريب سوبر جرانش", price: 70, ing: "بانيه + رومي مدخن" },
+                { id: "5", name: "كريب كفتة مشوية", price: 60, ing: "" },
+                { id: "6", name: "كريب كبدة إسكندراني", price: 60, ing: "" },
+                { id: "7", name: "كريب برجر لحمة", price: 70, ing: "" },
+                { id: "8", name: "كريب تشيكن برجر", price: 70, ing: "" },
+                { id: "9", name: "كريب ميكس جبن", price: 60, ing: "موزاريلا + رومي + مثلثات + زيتون + خضار" },
+                { id: "10", name: "كريب هوت دوج (سوسيس)", price: 60, ing: "" },
+                { id: "11", name: "كريب شاورمة فراخ", price: 85, ing: "" },
+                { id: "12", name: "كريب شاورمة لحمة", price: 85, ing: "" },
+                { id: "13", name: "كريب شيش طاووق", price: 85, ing: "" },
+                { id: "14", name: "كريب F 35", price: 100, ing: "زنجر + فراخ + بطاطس + روزبيف" },
+                { id: "15", name: "كريب F16", price: 85, ing: "زنجر باربيكيو + بطاطس + صوص سبايسي" },
+                { id: "16", name: "كريب F 122", price: 85, ing: "زنجر باربيكيو + بطاطس + صوص سبايسي" },
+                { id: "17", name: "كريب قنبلة", price: 100, ing: "سوسيس مدخن + بانيه + برجر" },
+                { id: "18", name: "كريب إيطاليانو", price: 90, ing: "زنجر + مدخن + باربيكيو" },
+                { id: "19", name: "كريب فاهيتا ميكسيكان", price: 90, ing: "فراخ + مشروم + باربيكيو" },
+                { id: "20", name: "كريب فاهيتا لحمة", price: 100, ing: "لحمة + مشروم + باربيكيو" },
+                { id: "21", name: "كريب ميكس لحمة", price: 100, ing: "كفتة + برجر + هوت دوج + مشروم" },
+                { id: "22", name: "كريب ميكس تربو", price: 100, ing: "كفتة + برجر + هوت دوج + سجق" },
+                { id: "23", name: "كريب تشيكن لارج", price: 100, ing: "زنجر + شيش + رومي" },
+                { id: "24", name: "كريب تشيكن رويال", price: 100, ing: "زنجر + شيش + بطاطس" },
+                { id: "25", name: "كريب عمار", price: 100, ing: "زنجر + شيش + بانيه" },
+                { id: "26", name: "كريب ميكس فراخ", price: 100, ing: "فراخ  + بانيه + زنجر + صوص خاص" },
+                { id: "27", name: "كريب سبايسي", price: 100, ing: "مشروم + بانيه + زنجر + باربيكيو" },
+                { id: "28", name: "كريب حركات", price: 100, ing: "كرسبي بانيه + شيش + بطاطس" },
+                { id: "29", name: "كريب جانجو", price: 100, ing: "سوسيس + بانيه + شيش" },
+                { id: "30", name: "كريب جولد ميكس", price: 100, ing: "سوسيس + زنجر + شيدر + صوص تايجر" },
+                { id: "31", name: "كريب ميكس شاورما", price: 100, ing: "شاورما لحمة + شاورما فراخ" },
+                { id: "32", name: "كريب جمبري", price: 150, ing: "" },
+                { id: "33", name: "كريب سوبر فياجرا", price: 170, ing: "جمبري + كابوريا + صوص خاص" },
+                { id: "34", name: "كريب 888", price: 110, ing: "سوسيس + زنجر + مدخن + فراخ + برجر" },
+                { id: "35", name: "كريب 777", price: 110, ing: "سوسيس + زنجر + مدخن + فراخ + برجر" },
+                { id: "36", name: "كريب 999", price: 120, ing: "بسنت + باربيكيو + بطاطس + مدخن + فراخ" },
+                { id: "37", name: "كريب S 17", price: 100, ing: "بانيه + زنجر + برجر+ بطاطس + صوص + برباكيو " },
+                { id: "38", name: "كريب S 18", price: 100, ing: " بانيه+ زنجر + برجر+ بطاطس  + صوص برباكيو  + سلامي + كونو " },
+                { id: "39", name: "كريب زنجر سوبر بريم", price: 80, ing: "" }
+            ];
+
+            const grid = document.querySelector('#crepes .menu-grid');
+            const selectedItems = {};
+
+            function makeSafeId(name) {
+                return String(name).trim().replace(/\s+/g, '-').replace(/[^\w\u0600-\u06FF-]/g, '');
+            }
+
+            items.forEach(item => {
+                const safeId = makeSafeId(item.name);
+                selectedItems[safeId] = { name: item.name, price: item.price };
+
+                const ingredientHtml = item.ing
+                    ? `<p style="font-size: 12px; color: #bbb; line-height: 1.4; min-height: 45px; margin-bottom: 12px; text-align: right; background: rgba(0,0,0,0.2); padding: 8px; border-radius: 8px;">${item.ing}</p>`
+                    : `<div style="min-height: 57px;"></div>`;
+
+                grid.innerHTML += `
+                    <div class="card-item ${item.isNew ? 'special-crepe' : ''}" style="position: relative; border-radius: 20px; background: #2B090A; padding: 15px; display: flex; flex-direction: column; border: 1.5px solid #E3B361; transition: 0.3s; box-shadow: 0 4px 15px rgba(0,0,0,0.3); margin-top: 10px;">
+                        ${item.isNew ? '<div class="new-badge-red">جديد</div>' : ''}
+                        <div style="position: absolute; top: 10px; left: 10px; background: #e74c3c; color: white; padding: 2px 8px; font-size: 10px; font-weight: bold; border-radius: 5px; z-index: 10; border: 1px solid #E3B361;">10% OFF</div>
+                        <div class="item-info" style="margin-top: 15px;">
+                            <h3 style="margin-bottom: 8px; font-size: 1.1rem; color: #F6E6CF; text-align: right; min-height: 25px;">${item.name}</h3>
+                            ${ingredientHtml}
+                        </div>
+                        <div class="price-box" style="display: flex; flex-direction: column; align-items: center; margin-bottom: 12px; border-top: 1px solid rgba(227,179,97,0.1); padding-top: 10px;">
+                            <span style="text-decoration: line-through; color: #888; font-size: 12px;">${Math.round(item.price*1.1)} ج</span>
+                            <span style="color: #E3B361; font-size: 1.4rem; font-weight: bold;">${item.price} ج.م</span>
+                        </div>
+                        <div class="qty-control" style="background: rgba(0,0,0,0.4); border-radius: 12px; padding: 6px; display: flex; align-items: center; justify-content: space-between; border: 1px solid rgba(227,179,97,0.1);">
+                            <button onclick="handleCrepeQty('${safeId}', -1)" style="color: #F6E6CF; background: rgba(255,255,255,0.05); border: none; width: 32px; height: 32px; border-radius: 8px; cursor: pointer; font-size: 20px;">-</button>
+                            <span id="qty-${safeId}" style="color: #E3B361; font-weight: bold;">0</span>
+                            <button onclick="handleCrepeQty('${safeId}', 1)" style="color: #1a0505; background: #E3B361; border: none; width: 32px; height: 32px; border-radius: 8px; cursor: pointer; font-size: 20px;">+</button>
+                        </div>
+                    </div>
+                `;
+            });
+
+            window.handleCrepeQty = function(id, change) {
+                const item = selectedItems[id];
+                const qtySpan = document.getElementById(`qty-${id}`);
+                let currentQty = parseInt(qtySpan.innerText);
+                let newQty = currentQty + change;
+                if(newQty >= 0) {
+                    qtySpan.innerText = newQty;
+                    if(typeof updateCart === 'function') {
+                        updateCart(item.name, item.price, change);
+                    }
+                }
+            };
+        })();
+    </script>
+</section>
 <section id="waffles" class="menu-section" style="display: none; direction: rtl; text-align: right; padding: 20px 10px 40px; background-color: #1a0505;">
     
+    <style>
+        /* أنيميشن النيون الأحمر الخاص بالعملاق */
+        @keyframes redGlow {
+            from { box-shadow: 0 0 10px #ff0000; transform: scale(1.02); }
+            to { box-shadow: 0 0 25px #ff4d4d, inset 0 0 10px #ff0000; transform: scale(1.04); }
+        }
+        .giant-card {
+            animation: redGlow 1.5s infinite alternate !important;
+            border: 2px solid #ff0000 !important;
+        }
+        .new-tag-red {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #ff0000;
+            color: white;
+            padding: 2px 15px;
+            font-size: 11px;
+            font-weight: bold;
+            border-radius: 5px;
+            box-shadow: 0 0 10px #ff0000;
+            z-index: 30;
+        }
+        /* تعديل احترافي للصورة */
+        .giant-image-holder img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* الحل السحري عشان الصورة تبقى واضحة */
+            object-position: center; /* الصورة تبقى في النص */
+            transition: 0.3s;
+        }
+    </style>
+
     <h2 class="section-header" style="text-align: center; color: #E3B361; margin-bottom: 30px; font-size: 28px; font-family: 'Segoe UI', Tahoma, sans-serif;">
         🧇 ركن الوافل والتحلية
     </h2>
     
     <div class="menu-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 15px; max-width: 1200px; margin: 0 auto;">
-        
-        <script>
-            (function() {
-                // مصفوفة أصناف الوافل المحدثة - كرم خالد
-                const waffleItems = [
-                { name: "وافل عم عماد", price: 80, isSpecial: true, ing: "بستاشيو + لوتس + وايت + شوكولاتة" },
-                    { name: "وافل شوكولاتة", price: 50 },
-                    { name: "وافل وايت", price: 50 },
-                    { name: "وافل كراميل", price: 50 },
-                    { name: "وافل خوخ", price: 50 },
-                    { name: "وافل أناناس", price: 50 },
-                    { name: "وافل نص شوكولاتة ونص وايت", price: 60 },
-                    { name: "وافل موز", price: 60 },
-                    { name: "وافل ميكسات", price: 60 },
-                    { name: "وافل فواكه", price: 60 },
-                    { name: "وافل مانجو", price: 60 },
-                    { name: "وافل أوريو", price: 60 },
-                    { name: "وافل بستاشيو", price: 70 },
-                   
-                   
-                ];
-        
-                const waffleGrid = document.querySelector('#waffles .menu-grid');
-        
-                waffleItems.forEach(item => {
-                    // شغل الحركات لوافل عم عماد (البرواز اللي بينور والأنيميشن)
-                    const specialStyle = item.isSpecial 
-                        ? `border: 2px solid #E3B361; box-shadow: 0 0 20px #E3B361, inset 0 0 10px #E3B361; animation: glow 1.5s infinite alternate;` 
-                        : `border: 1.5px solid #E3B361; box-shadow: 0 4px 15px rgba(0,0,0,0.3);`;
-        
-                    const specialTag = item.isSpecial 
-                        ? '<span style="position: absolute; top: -10px; right: -10px; background: linear-gradient(45deg, #E3B361, #fff); color: #1a0505; font-size: 11px; padding: 5px 12px; border-radius: 20px; font-weight: bold; box-shadow: 0 2px 10px rgba(0,0,0,0.5); z-index: 20;">الاكثر طلباً 🔥</span>' 
-                        : '';
-        
-                    waffleGrid.innerHTML += `
-                        <style>
-                            @keyframes glow {
-                                from { box-shadow: 0 0 10px #E3B361; transform: scale(1); }
-                                to { box-shadow: 0 0 25px #E3B361, 0 0 40px #ffcc00; transform: scale(1.02); }
-                            }
-                        </style>
-                        <div class="card-item" style="position: relative; border-radius: 20px; background: #2B090A; padding: 15px; display: flex; flex-direction: column; transition: 0.3s; text-align: center; ${specialStyle}">
-                            ${specialTag}
-                            <h3 style="color: #F6E6CF; margin: 10px 0; font-size: 16px; font-weight: bold; min-height: 40px; display: flex; align-items: center; justify-content: center;">${item.name}</h3>
-                            
-                            ${item.ing ? `<p style="font-size: 11px; color: #E3B361; margin-bottom: 10px; font-weight: bold;">(${item.ing})</p>` : ''}
-                            
-                            <div style="color: #E3B361; font-size: 1.4rem; font-weight: bold; margin-bottom: 15px;">${item.price} <small style="font-size: 12px;">ج</small></div>
-                            
-                            <div class="qty-control" style="background: rgba(0,0,0,0.4); border-radius: 12px; padding: 6px; display: flex; align-items: center; justify-content: space-between; border: 1px solid rgba(227,179,97,0.1);">
-                                <button onclick="updateCart('${item.name}', ${item.price}, -1)" style="color: #F6E6CF; background: none; border: none; width: 32px; height: 32px; cursor: pointer; font-size: 20px;">-</button>
-                                <span id="qty-${item.name}" style="color: #E3B361; font-weight: bold;">0</span>
-                                <button onclick="updateCart('${item.name}', ${item.price}, 1)" style="color: #1a0505; background: #E3B361; border: none; width: 32px; height: 32px; border-radius: 8px; cursor: pointer; font-size: 20px;">+</button>
-                            </div>
-                        </div>
-                    `;
-                });
-            })();
-        </script>
-
     </div>
+
+    <script>
+        (function() {
+            const waffleItems = [
+                // صنف العملاق الجديد مع الصورة
+                { name: "وافل العملاق", price: 80, isGiant: true, image: "giant-waffle.jpg" }, // غير اسم الصورة هنا
+                
+                { name: "وافل عم عماد", price: 80, isSpecial: true, ing: "بستاشيو + لوتس + وايت + شوكولاتة" },
+                { name: "وافل شوكولاتة", price: 50 },
+                { name: "وافل وايت", price: 50 },
+                { name: "وافل كراميل", price: 50 },
+                { name: "وافل خوخ", price: 50 },
+                { name: "وافل أناناس", price: 50 },
+                { name: "وافل نص شوكولاتة ونص وايت", price: 60 },
+                { name: "وافل موز", price: 60 },
+                { name: "وافل ميكسات", price: 60 },
+                { name: "وافل فواكه", price: 60 },
+                { name: "وافل مانجو", price: 60 },
+                { name: "وافل أوريو", price: 60 },
+                { name: "وافل بستاشيو", price: 70 }
+            ];
+
+            const waffleGrid = document.querySelector('#waffles .menu-grid');
+
+            waffleItems.forEach(item => {
+                let cardClass = "card-item";
+                let style = `border: 1.5px solid #E3B361; box-shadow: 0 4px 15px rgba(0,0,0,0.3);`;
+                let badge = "";
+                let content = "";
+
+                // حالة وافل العملاق (النيون الأحمر والصورة)
+                if (item.isGiant) {
+                    cardClass += " giant-card";
+                    badge = '<span class="new-tag-red">جديد</span>';
+                    // ضفت Class للتعديل على الصورة
+                    content = `<div class="giant-image-holder" style="width: 100%; height: 90px; margin-bottom: 10px; border-radius: 10px; overflow: hidden; border: 1px solid #ff0000; box-shadow: 0 0 5px rgba(255,0,0,0.5);">
+                                    <img src="${item.image}" alt="${item.name}">
+                               </div>`;
+                } 
+                // حالة وافل عم عماد (النيون الذهبي والمكونات)
+                else if (item.isSpecial) {
+                    style = `border: 2px solid #E3B361; box-shadow: 0 0 20px #E3B361, inset 0 0 10px #E3B361; animation: glow 1.5s infinite alternate;`;
+                    badge = '<span style="position: absolute; top: -10px; right: -10px; background: linear-gradient(45deg, #E3B361, #fff); color: #1a0505; font-size: 11px; padding: 5px 12px; border-radius: 20px; font-weight: bold; box-shadow: 0 2px 10px rgba(0,0,0,0.5); z-index: 20;">الاكثر طلباً 🔥</span>';
+                    content = `<p style="font-size: 11px; color: #E3B361; margin-bottom: 10px; font-weight: bold;">(${item.ing})</p>`;
+                } 
+                // الأصناف العادية
+                else {
+                    content = `<div style="min-height: 35px;"></div>`;
+                }
+
+                waffleGrid.innerHTML += `
+                    <style>
+                        @keyframes glow {
+                            from { box-shadow: 0 0 10px #E3B361; transform: scale(1); }
+                            to { box-shadow: 0 0 25px #E3B361, 0 0 40px #ffcc00; transform: scale(1.02); }
+                        }
+                    </style>
+                    <div class="${cardClass}" style="position: relative; border-radius: 20px; background: #2B090A; padding: 15px; display: flex; flex-direction: column; transition: 0.3s; text-align: center; margin-top: 15px; ${style}">
+                        ${badge}
+                        <h3 style="color: #F6E6CF; margin: 10px 0; font-size: 16px; font-weight: bold; min-height: 40px; display: flex; align-items: center; justify-content: center;">${item.name}</h3>
+                        
+                        ${content}
+                        
+                        <div style="color: #E3B361; font-size: 1.4rem; font-weight: bold; margin-bottom: 15px;">${item.price} <small style="font-size: 12px;">ج</small></div>
+                        
+                        <div class="qty-control" style="background: rgba(0,0,0,0.4); border-radius: 12px; padding: 6px; display: flex; align-items: center; justify-content: space-between; border: 1px solid rgba(227,179,97,0.1);">
+                            <button onclick="updateCart('${item.name}', ${item.price}, -1)" style="color: #F6E6CF; background: none; border: none; width: 32px; height: 32px; cursor: pointer; font-size: 20px;">-</button>
+                            <span id="qty-${item.name}" style="color: #E3B361; font-weight: bold;">0</span>
+                            <button onclick="updateCart('${item.name}', ${item.price}, 1)" style="color: #1a0505; background: #E3B361; border: none; width: 32px; height: 32px; border-radius: 8px; cursor: pointer; font-size: 20px;">+</button>
+                        </div>
+                    </div>
+                `;
+            });
+        })();
+    </script>
 </section>
  
 
@@ -979,6 +1134,40 @@ body {
     </div>
 </section>
 <section id="sandwiches" class="menu-section" style="display: none; direction: rtl; text-align: right; padding: 20px 10px 40px; background-color: #1a0505;">
+    
+    <style>
+        /* أنيميشن النيون الأحمر الخاص بالعملاق */
+        @keyframes redGlowSandwich {
+            from { box-shadow: 0 0 10px #ff0000; transform: scale(1.01); }
+            to { box-shadow: 0 0 20px #ff4d4d, inset 0 0 10px #ff0000; transform: scale(1.03); }
+        }
+        .giant-card-red {
+            animation: redGlowSandwich 1.5s infinite alternate !important;
+            border: 2px solid #ff0000 !important;
+            position: relative;
+        }
+        .new-badge-red {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #ff0000;
+            color: white;
+            padding: 2px 15px;
+            font-size: 11px;
+            font-weight: bold;
+            border-radius: 5px;
+            box-shadow: 0 0 10px #ff0000;
+            z-index: 30;
+        }
+        .sandwich-img-holder img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+    </style>
+
     <h2 class="section-header" style="text-align: center; color: #E3B361; margin-bottom: 30px; font-size: 28px; font-family: 'Segoe UI', Tahoma, sans-serif;">
         <i class="fas fa-bread-slice"></i> قسم السندوتشات 🥖
     </h2>
@@ -988,43 +1177,67 @@ body {
     <script>
         (function() {
             const sandwichItems = [
-    { id: "s1", name: "ساندوتش شاورمة لحمة", sizes: { "كبير": 80 }, disabledSizes: ["صغير", "وسط"] },
-    { id: "s2", name: "ساندوتش شاورمة فراخ", sizes: { "صغير": 50, "وسط": 60, "كبير": 80 } },
-    { id: "s3", name: "ساندوتش سوبر كرانش", price: 60 },
-    { id: "s4", name: "ساندوتش برجر بالجبنة", price: 100 },
-    { id: "s5", name: "ساندوتش برجر لبنة", price: 120 },
-    { id: "s6", name: "ساندوتش فاهيتا ميكسيكانو", price: 80 },
-    { id: "s7", name: "ساندوتش شيش طاووق", price: 80 },
-    { id: "s8", name: "ساندوتش إيطاليانو", price: 70 },
-    { id: "s9", name: "ساندوتش 122", price: 70 },
-    { id: "s10", name: "ساندوتش F16", price: 70 },
-    { id: "s11", name: "ساندوتش زنجر سوبريم", price: 65 },
-    { id: "s12", name: "ساندوتش هوت دوج (سوسيس)", sizes: { "وسط": 30, "كبير": 40 } },
-    { id: "s13", name: "ساندوتش كبدة إسكندراني", sizes: { "وسط": 30, "كبير": 40 } },
-    { id: "s14", name: "ساندوتش كفتة مشوية", sizes: { "وسط": 30, "كبير": 40 } },
-    { id: "s15", name: "ساندوتش دجاج كرسبي حار", sizes: { "وسط": 30, "كبير": 40 } },
-    { id: "s16", name: "ساندوتش دجاج بانية", sizes: { "وسط": 30, "كبير": 40 } },
-    { id: "s17", name: "ساندوتش تشيكن دبل تكساس", price: 130 },
-    { id: "s18", name: "ساندوتش تشيكن دبل بسنت", price: 130 },
-    { id: "s19", name: "ساندوتش تشيكن بسنت فراخ حار", price: 70 },
-    { id: "s20", name: "ساندوتش برجر تكساس", price: 70 },
-    { id: "s21", name: "ساندوتش إسبشيال برجر", price: 50 },
-    { id: "s22", name: "ساندوتش تشيكن تشيز برجر", price: 40 },
-    { id: "s23", name: "ساندوتش تشيكن برجر", price: 35 },
-    { id: "s24", name: "ساندوتش برجر بيض", price: 35 },
-    { id: "s25", name: "ساندوتش تشيز برجر", price: 35 },
-    { id: "s26", name: "ساندوتش برجر لحمة", price: 30 },
-    { id: "s27", name: "ساندوتش تشيز برجر ماكدونالدز جامبو", price: 60 }
-];
+                // إضافة ساندوتش العملاق الجديد في البداية
+                { 
+                    id: "giant-s", 
+                    name: "ساندوتش العملاق", 
+                    price: 150, 
+                    isGiant: true, 
+                    image: "giant-sandwich.jpg", 
+                    desc: "دبل لحمة + قطعة فراخ" 
+                },
+                { id: "s1", name: "ساندوتش شاورمة لحمة", sizes: { "كبير": 80 }, disabledSizes: ["صغير", "وسط"] },
+                { id: "s2", name: "ساندوتش شاورمة فراخ", sizes: { "صغير": 50, "وسط": 60, "كبير": 80 } },
+                { id: "s3", name: "ساندوتش سوبر كرانش", price: 60 },
+                { id: "s4", name: "ساندوتش برجر بالجبنة", price: 100 },
+                { id: "s5", name: "ساندوتش برجر لبنة", price: 120 },
+                { id: "s6", name: "ساندوتش فاهيتا ميكسيكانو", price: 80 },
+                { id: "s7", name: "ساندوتش شيش طاووق", price: 80 },
+                { id: "s8", name: "ساندوتش إيطاليانو", price: 70 },
+                { id: "s9", name: "ساندوتش 122", price: 70 },
+                { id: "s10", name: "ساندوتش F16", price: 70 },
+                { id: "s11", name: "ساندوتش زنجر سوبريم", price: 65 },
+                { id: "s12", name: "ساندوتش هوت دوج (سوسيس)", sizes: { "وسط": 30, "كبير": 40 } },
+                { id: "s13", name: "ساندوتش كبدة إسكندراني", sizes: { "وسط": 30, "كبير": 40 } },
+                { id: "s14", name: "ساندوتش كفتة مشوية", sizes: { "وسط": 30, "كبير": 40 } },
+                { id: "s15", name: "ساندوتش دجاج كرسبي حار", sizes: { "وسط": 30, "كبير": 40 } },
+                { id: "s16", name: "ساندوتش دجاج بانية", sizes: { "وسط": 30, "كبير": 40 } },
+                { id: "s17", name: "ساندوتش تشيكن دبل تكساس", price: 130 },
+                { id: "s18", name: "ساندوتش تشيكن دبل بسنت", price: 130 },
+                { id: "s19", name: "ساندوتش تشيكن بسنت فراخ حار", price: 70 },
+                { id: "s20", name: "ساندوتش برجر تكساس", price: 70 },
+                { id: "s21", name: "ساندوتش إسبشيال برجر", price: 50 },
+                { id: "s22", name: "ساندوتش تشيكن تشيز برجر", price: 40 },
+                { id: "s23", name: "ساندوتش تشيكن برجر", price: 35 },
+                { id: "s24", name: "ساندوتش برجر بيض", price: 35 },
+                { id: "s25", name: "ساندوتش تشيز برجر", price: 35 },
+                { id: "s26", name: "ساندوتش برجر لحمة", price: 30 },
+                { id: "s27", name: "ساندوتش تشيز برجر ماكدونالدز جامبو", price: 60 }
+            ];
+
             const grid = document.querySelector('#sandwiches .menu-grid');
-            const selectedItems = {}; // لتخزين الاسم والسعر الحالي
+            const selectedItems = {};
 
             sandwichItems.forEach(item => {
-                // تعيين الاسم والسعر الابتدائي
                 const initialPrice = item.price || Object.values(item.sizes || {})[0];
                 selectedItems[item.id] = { name: item.name, price: initialPrice };
 
-                let sizeHTML = '';
+                let cardClass = "card-item";
+                let badgeHTML = "";
+                let imageHTML = "";
+                let sizeHTML = "";
+                let descHTML = "";
+
+                // تصميم خاص للعملاق
+                if(item.isGiant) {
+                    cardClass += " giant-card-red";
+                    badgeHTML = '<span class="new-badge-red">جديد</span>';
+                    descHTML = `<p style="font-size: 11px; color: #E3B361; margin-bottom: 8px; font-weight: bold;">${item.desc}</p>`;
+                    imageHTML = `<div class="sandwich-img-holder" style="width: 100%; height: 90px; margin-bottom: 10px; border-radius: 12px; overflow: hidden; border: 1px solid #ff0000;">
+                                    <img src="${item.image}" alt="${item.name}">
+                                 </div>`;
+                }
+
                 if(item.sizes) {
                     const firstSize = Object.keys(item.sizes)[0];
                     selectedItems[item.id] = { name: `${item.name} (${firstSize})`, price: item.sizes[firstSize] };
@@ -1044,8 +1257,11 @@ body {
                 }
 
                 grid.innerHTML += `
-                    <div class="card-item" style="position: relative; border-radius: 20px; background: #2B090A; padding: 12px; display: flex; flex-direction: column; border: 1px solid #E3B361;">
-                        <h3 style="color: #F6E6CF; font-size: 1rem; margin: 5px 0; min-height: 30px;">${item.name}</h3>
+                    <div class="${cardClass}" style="border-radius: 20px; background: #2B090A; padding: 12px; display: flex; flex-direction: column; border: 1px solid #E3B361; margin-top: 10px;">
+                        ${badgeHTML}
+                        <h3 style="color: #F6E6CF; font-size: 1rem; margin: 5px 0; min-height: 30px; text-align: center;">${item.name}</h3>
+                        ${imageHTML}
+                        ${descHTML}
                         ${sizeHTML}
                         <div style="text-align: center; margin-bottom: 10px;">
                             <span id="price-${item.id}" style="color: #E3B361; font-weight: bold; font-size: 1.2rem;">${initialPrice} ج.م</span>
@@ -1077,7 +1293,7 @@ body {
                 let currentQty = parseInt(qtySpan.innerText);
                 let newQty = currentQty + change;
                 if(newQty < 0) newQty = 0;
-                qtySpan.innerText = newQty; // تحديث العداد فورًا
+                qtySpan.innerText = newQty;
 
                 if(typeof updateCart === 'function'){
                     updateCart(item.name, item.price, change);
@@ -1085,7 +1301,7 @@ body {
             };
         })();
     </script>
-</section>  
+</section> 
 <style>
     :root {
         --main-burgundy: #2B090A;
