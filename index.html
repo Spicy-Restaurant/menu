@@ -17,13 +17,13 @@
  <meta property="og:image:height" content="500">
  <meta property="og:url" content="https://yourwebsite.com">
  <meta property="og:type" content="website">
- <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes">
+
  <meta name="theme-color" content="#1a0505">
  
  <link rel="preconnect" href="https://fonts.googleapis.com">
  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>اسبايسي – البدرشين | Spicy </title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
@@ -53,11 +53,12 @@
         :root { --main-red: #e74c3c; --gold: #f1c40f; --dark-black: #0a0a0a; --card-bg: #1a1a1a; }
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, sans-serif; -webkit-tap-highlight-color: transparent; }
       
-body { 
-    background: #2B090A; /* اللون النبيتي المكتوم اللي اخترته */
-    color: #F6E6CF; 
-    padding-bottom: 90px; 
-    scroll-behavior: smooth; 
+        body{
+    background:#2B090A;
+    color:#F6E6CF;
+    padding-bottom:90px;
+    padding-top:80px;
+    scroll-behavior:smooth;
 }
 
         /* --- Header --- */
@@ -335,41 +336,26 @@ body {
 /* --- 1. تنسيق السلايدر الـ 3D (عشان تطلع الصورة فوق) --- */
 #dynamic-slider-container {
     width: 100%;
-    margin-top: 135px !important; /* دي اللي بتطلع الفيديو لفوق */
+    margin-top: 0 !important; /* كان عامل فراغ */
+    padding-top: 0 !important;
     position: relative;
     box-sizing: border-box;
-    padding: 0;
 }
 
 .slideshow-box {
     position: relative;
-    width: 100%;
+    width: 100% !important;
+    margin: 0 !important; /* يشيل الفراغ */
     border-radius: 20px;
     overflow: hidden;
-    /* الظل اللي بيعمل شكل مجسم */
-    box-shadow: 0 10px 30px rgba(0,0,0,0.6); 
+    box-shadow: 0 10px 30px rgba(0,0,0,0.6);
     line-height: 0;
-    margin-bottom: 0; /* لغينا المسافة عشان يلزق في الكلام */
 }
 
-.slider-video {
-    width: 100%;
-    height: auto;
-    display: block;
-    border-radius: 20px;
-}
-
-/* --- 2. منطقة الكلام الـ "الآمنة" (تحت الفيديو) --- */
 .slide-content-safe {
-    background: transparent; /* خلفية الموقع هي اللي تظهر */
-    padding: 15px 10px 30px; 
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px; /* مسافة أمان إجبارية تمنع التداخل */
+    padding: 10px 10px 15px !important; /* تصغير المسافة */
+    margin-top: 0 !important;
 }
-
 /* العنوان (العربي والانجليزي جنب بعض) */
 .brand-line {
     display: flex;
@@ -480,6 +466,188 @@ body {
         </div>
     </div>
 </header>
+<!-- ========================= -->
+<!-- Premium Moving Info Bar -->
+<!-- ========================= -->
+<!-- ========================= -->
+<!-- ULTRA PREMIUM MARQUEE -->
+<!-- ========================= -->
+
+<style>
+
+    .spicy-marquee{
+        position: relative;
+        width: 100%;
+        height: 52px;
+        overflow: hidden;
+    
+        display: flex;
+        align-items: center;
+    
+        background:
+        linear-gradient(
+            90deg,
+            #120202 0%,
+            #2b090a 25%,
+            #3a0d0d 50%,
+            #2b090a 75%,
+            #120202 100%
+        );
+    
+        border-top: 1px solid rgba(227,179,97,.35);
+        border-bottom: 1px solid rgba(227,179,97,.35);
+    
+        box-shadow:
+        0 0 20px rgba(227,179,97,.08),
+        inset 0 0 20px rgba(255,255,255,.02);
+    
+        backdrop-filter: blur(8px);
+    
+        margin: 0;
+        padding: 0;
+    }
+    
+    /* Glow يمين */
+    .spicy-marquee::before{
+        content:"";
+        position:absolute;
+        top:0;
+        right:0;
+        width:90px;
+        height:100%;
+        z-index:2;
+    
+        background:linear-gradient(
+            to left,
+            #120202 0%,
+            rgba(18,2,2,0) 100%
+        );
+    }
+    
+    /* Glow شمال */
+    .spicy-marquee::after{
+        content:"";
+        position:absolute;
+        top:0;
+        left:0;
+        width:90px;
+        height:100%;
+        z-index:2;
+    
+        background:linear-gradient(
+            to right,
+            #120202 0%,
+            rgba(18,2,2,0) 100%
+        );
+    }
+    
+    .spicy-track{
+        display:flex;
+        align-items:center;
+        gap:55px;
+    
+        white-space:nowrap;
+        width:max-content;
+    
+        animation: spicyMove 34s linear infinite;
+    
+        font-size:15px;
+        font-weight:700;
+        color:#f5d487;
+    
+        text-shadow:
+        0 0 8px rgba(255,200,0,.25),
+        0 0 20px rgba(255,170,0,.12);
+    }
+    
+    /* وقف الحركة عند اللمس */
+    .spicy-marquee:hover .spicy-track{
+        animation-play-state: paused;
+    }
+    
+    .spicy-item{
+        position:relative;
+        display:flex;
+        align-items:center;
+        gap:10px;
+    
+        letter-spacing:.3px;
+    
+        transition:.3s;
+    }
+    
+    .spicy-item:hover{
+        transform: scale(1.04);
+        color:#fff0b3;
+    }
+    
+    /* نقطة ذهبية بين الجمل */
+    .spicy-item::after{
+        content:"•";
+        position:absolute;
+        left:-30px;
+    
+        color:#E3B361;
+        opacity:.5;
+        font-size:18px;
+    }
+    
+    /* أول عنصر بدون نقطة */
+    .spicy-item:first-child::after{
+        display:none;
+    }
+    
+    @keyframes spicyMove{
+    
+        0%{
+            transform: translateX(100%);
+        }
+    
+        100%{
+            transform: translateX(-100%);
+        }
+    
+    }
+    
+    /* موبايل */
+    @media(max-width:768px){
+    
+        .spicy-marquee{
+            height:46px;
+        }
+    
+        .spicy-track{
+            font-size:13px;
+            gap:40px;
+            animation-duration: 28s;
+        }
+    
+    }
+    
+    </style>
+    
+    
+    <div class="spicy-marquee">
+    
+        <div class="spicy-track">
+    
+            <div class="spicy-item">🌶️ أهلاً بيكم في مطعم سبايسي</div>
+    
+            <div class="spicy-item">🔥 أقوى العروض والوجبات</div>
+    
+            <div class="spicy-item">🛒 اختار أوردرك بسهولة</div>
+    
+            <div class="spicy-item">📍 اكتب العنوان واللوكيشن</div>
+    
+            <div class="spicy-item">📲 ابعت الطلب واتساب</div>
+    
+            <div class="spicy-item">🚀 توصيل سريع لجميع المناطق</div>
+    
+            <div class="spicy-item">❤️ شكراً لثقتكم في سبايسي</div>
+    
+        </div>
+    
+    </div>
 <style>
     /* 1. زيادة المساحة عشان الكلام مينطش فوق الصورة */
     .slide-info-box {
@@ -521,35 +689,67 @@ body {
     </div>
 
     <script>
-        (function() {
+        (function () {
+        
             const imgs = document.querySelectorAll('#dynamic-slider-container .slider-img');
             const title = document.getElementById('dynamic-title');
             const desc = document.getElementById('dynamic-desc');
-            
+        
             const data = [
                 { t: "اسبايسي | SPICY", d: "سندوتش العملاق الجديد وصل! 🔥" },
                 { t: "بيتزا سبايسي المميزة 🍕", d: "طعم إيطالي أصلي في قلب الجيزة" },
                 { t: "وافل العملاق 🧇", d: "تحلية السعادة بميكس اللوتس والبستاشيو" }
             ];
-
+        
             let index = 0;
-            setInterval(() => {
-                imgs[index].style.opacity = 0;
-                index = (index + 1) % imgs.length;
-                imgs[index].style.opacity = 1;
-                
-                // تحديث الكلام
-                title.style.opacity = 0;
-                desc.style.opacity = 0;
-                setTimeout(() => {
-                    title.innerText = data[index].t;
-                    desc.innerText = data[index].d;
-                    title.style.opacity = 1;
-                    desc.style.opacity = 1;
-                }, 500);
-            }, 3500);
+            let sliderInterval;
+        
+            function startSlider() {
+        
+                sliderInterval = setInterval(() => {
+        
+                    imgs[index].style.opacity = 0;
+        
+                    index = (index + 1) % imgs.length;
+        
+                    imgs[index].style.opacity = 1;
+        
+                    // إخفاء الكلام
+                    title.style.opacity = 0;
+                    desc.style.opacity = 0;
+        
+                    setTimeout(() => {
+        
+                        title.innerText = data[index].t;
+                        desc.innerText = data[index].d;
+        
+                        title.style.opacity = 1;
+                        desc.style.opacity = 1;
+        
+                    }, 500);
+        
+                }, 3500);
+            }
+        
+            // تشغيل السلايدر
+            startSlider();
+        
+            // وقف السلايدر لما المستخدم يخرج من الصفحة
+            window.addEventListener('blur', () => {
+                clearInterval(sliderInterval);
+            });
+        
+            // يرجع يشتغل لما يرجع للصفحة
+            window.addEventListener('focus', () => {
+        
+                clearInterval(sliderInterval);
+        
+                startSlider();
+        
+            });
+        
         })();
-    </script>
+        </script>
 </section>
 <section id="offers" class="menu-section" style="display: block; direction: rtl; text-align: right; padding: 20px 10px 40px; background-color: #1a0505;">
     
@@ -2257,8 +2457,8 @@ body {
             Developed by: <b>Eng. Mahmoud Khaled</b>
           </div>
 
-          <a href="https://wa.me/201147014001" target="_blank" rel="noopener noreferrer" class="lux-dev-btn">
-            💼 اطلب موقعك الآن: 01147014001
+          <a href="#" target="_blank" rel="noopener noreferrer" class="lux-dev-btn">
+            اطلب موقعك الآن: 01147014001
           </a>
         </div>
       </div>
@@ -2322,45 +2522,7 @@ body {
     // =========================
     // 3) السلايدر (النسخة الشغالة من الكود القديم)
     // =========================
-    let spicyIndex = 0;
-    let sliderTimer;
-
-    function runSpicy3D() {
-        clearTimeout(sliderTimer);
-        const allItems = document.querySelectorAll('.slide-item');
-        const titleArea = document.getElementById('st-title');
-        const descArea = document.getElementById('st-desc');
-        const dots = document.querySelectorAll('.dot-indicator');
-
-        if (allItems.length === 0) return;
-
-        const slideData = [
-            { t: "اسبايسي — مذاق عالمي أصيل", d: "أقوى عروض التوفير تجهيز طازج يومياً يوصلك لحد البيت." },
-            { t: "زنجر سبايسي.. مقرمش أكتر", d: "خلطتنا الحارة السرية هتوديك في حتة تانية." },
-            { t: "كريب سبايسي.. طعم الحكاية", d: "كل اللي بتتمناه من قرمشة وطعم هتلاقيه عندنا." },
-            { t: "بيتزا إيطالي على أصولها", d: "عجينة فريش ومكونات طازجة يومياً." },
-            { t: "ميكسات سبايسي.. وفر ووفر", d: "أقوى عروض التوفير على الكريبات والسندوتشات." },
-            { t: "عروض الأحد والاثنين 🔥", d: "مستني إيه؟ اطلب عرض اليوم ووفر كتير." },
-            { t: "ركن العمالقة: S18 & F16 🔥", d: "تحدى جوعك مع أضخم السندوتشات في البدرشين." },
-            { t: "تحلية سبايسي.. وافل نوتيلا", d: "ختامها مسك مع أحلى وافل وفواكه نوتيلا." }
-        ];
-
-        allItems.forEach((item, i) => {
-            item.classList.remove('active');
-            if(dots[i]) dots[i].classList.remove('active-dot');
-        });
-
-        spicyIndex++;
-        if (spicyIndex > allItems.length) { spicyIndex = 1; }
-
-        allItems[spicyIndex - 1].classList.add('active');
-        if(titleArea) titleArea.innerText = slideData[spicyIndex - 1].t;
-        if(descArea) descArea.innerText = slideData[spicyIndex - 1].d;
-        if(dots[spicyIndex - 1]) dots[spicyIndex - 1].classList.add('active-dot');
-
-        sliderTimer = setTimeout(runSpicy3D, 7000);
-    }
-
+   
     // =========================
     // 4) تحميل الصفحة
     // =========================
@@ -2975,5 +3137,10 @@ if (item.sizes) {
     </script>
     
     </script>
+    <script>
+        window.addEventListener('load', () => {
+            document.body.style.visibility = 'visible';
+        });
+        </script>
 </body>
 </html>
