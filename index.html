@@ -1194,7 +1194,7 @@
                     : `<div style="min-height: 57px;"></div>`;
 
                 grid.innerHTML += `
-                    <div class="card-item ${item.isNew ? 'special-crepe' : ''}" style="position: relative; border-radius: 20px; background: #2B090A; padding: 15px; display: flex; flex-direction: column; border: 1.5px solid #E3B361; transition: 0.3s; box-shadow: 0 4px 15px rgba(0,0,0,0.3); margin-top: 10px;">
+                <div class="card-item ${item.isNew ? 'special-crepe' : ''} ${item.id === '12' ? 'off' : ''}" style="="position: relative; border-radius: 20px; background: #2B090A; padding: 15px; display: flex; flex-direction: column; border: 1.5px solid #E3B361; transition: 0.3s; box-shadow: 0 4px 15px rgba(0,0,0,0.3); margin-top: 10px;">
                         ${item.isNew ? '<div class="new-badge-red">جديد</div>' : ''}
                         <div style="position: absolute; top: 10px; left: 10px; background: #e74c3c; color: white; padding: 2px 8px; font-size: 10px; font-weight: bold; border-radius: 5px; z-index: 10; border: 1px solid #E3B361;">10% OFF</div>
                         <div class="item-info" style="margin-top: 15px;">
