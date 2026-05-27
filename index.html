@@ -26,8 +26,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>اسبايسي – البدرشين | Spicy </title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-
+    <style>
+        /* قفل تسريب المساحة يميناً ويساراً */
+        html, body {
+            max-width: 100vw;
+            overflow-x: hidden;
+            margin: 0;
+            padding: 0;
+            position: relative;
+        }
     
+        /* إجبار كل العناصر تلتزم بعرض الشاشة */
+        * {
+            box-sizing: border-box !important;
+        }
+    
+        /* تصليح الجريد والسلايدر */
+        .menu-grid, #dynamic-slider-container {
+            width: 100% !important;
+            max-width: 100% !important;
+            margin-right: 0 !important;
+            margin-left: 0 !important;
+        }
+    </style>
     <style>
         :root { --main-red: #e74c3c; --gold: #f1c40f; --dark-black: #0a0a0a; --card-bg: #1a1a1a; }
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, sans-serif; -webkit-tap-highlight-color: transparent; }
@@ -222,40 +243,6 @@
             font-weight: bold;
         }
     </style>
-    <style>
-
-.off{
-    opacity: .45 !important;
-    pointer-events: none !important;
-    filter: grayscale(100%) !important;
-    position: relative !important;
-}
-
-.off::after{
-    content: "غير متاح حالياً";
-
-    position: absolute;
-    top: 50%;
-    left: 50%;
-
-    transform: translate(-50%,-50%);
-
-    background: #111;
-    color: #fff;
-
-    padding: 10px 18px;
-
-    border-radius: 14px;
-
-    font-size: 14px;
-    font-weight: bold;
-
-    border: 1px solid #E3B361;
-
-    z-index: 9999;
-}
-        
-        </style>
 </head>
 <body>
     <div id="side-nav" class="side-nav" style="direction: rtl; text-align: right; background: #1a0f0a !important; border-left: 3px solid #E3B361 !important; z-index: 9999 !important;">
@@ -644,45 +631,42 @@
     
         <div class="spicy-track">
     
-            <div class="spicy-item">🐑 كل عام وأنتم بخير بمناسبة عيد الأضحى المبارك</div>
+            <div class="spicy-item">🌶️ أهلاً بيكم في مطعم سبايسي</div>
     
-            <div class="spicy-item">🌙 سبايسي يتمنى لكم عيد سعيد مليان فرحة ولمّة حلوة</div>
+            <div class="spicy-item">🔥 أقوى العروض والوجبات</div>
     
-            <div class="spicy-item">🔥 أقوى الوجبات والعروض الخاصة بالعيد</div>
+            <div class="spicy-item">🛒 اختار أوردرك بسهولة</div>
     
-            <div class="spicy-item">🍕 اطلب أكلتك المفضلة واستمتع بطعم سبايسي</div>
+            <div class="spicy-item">📍 اكتب العنوان واللوكيشن</div>
     
-            <div class="spicy-item">📍 التوصيل سريع لجميع المناطق</div>
+            <div class="spicy-item">📲 ابعت الطلب واتساب</div>
     
-            <div class="spicy-item">📲 ابعت طلبك بسهولة على الواتساب</div>
+            <div class="spicy-item">🚀 توصيل سريع لجميع المناطق</div>
     
-            <div class="spicy-item">❤️ شكراً لثقتكم في مطعم سبايسي</div>
-    
-            <div class="spicy-item">🎉 عيد أضحى مبارك عليكم وعلى أحبابكم</div>
+            <div class="spicy-item">❤️ شكراً لثقتكم في سبايسي</div>
     
         </div>
     
     </div>
-    
-    <style>
+<style>
     /* 1. زيادة المساحة عشان الكلام مينطش فوق الصورة */
     .slide-info-box {
-        padding-top: 60px !important;
-        margin-top: -40px !important;
+        padding-top: 60px !important; /* زودنا المساحة هنا */
+        margin-top: -40px !important; /* دخلنا الصندوق تحت الصورة أكتر للـ 3D */
     }
-    
-    /* 2. ضبط مكان الصورة */
+
+    /* 2. ضبط مكان الصورة عشان الوافل يظهر بوضوح */
     .slider-img {
-        object-position: 50% 70% !important;
+        object-position: 50% 70% !important; /* ده هيرفع صورة الوافل لفوق شوية في الكادر */
     }
-    
+
     /* 3. تنعيم الأزرار */
     .slide-btns a {
         border-width: 1px !important;
         font-size: 13px !important;
         letter-spacing: 0.5px;
     }
-    </style>
+</style>
 <section id="dynamic-slider-container" style="position: relative; width: 100%; overflow: hidden; background: #1a0505;">
     
     <div class="slideshow-box" style="width: 100%; height: auto; aspect-ratio: 16 / 9; position: relative; border-radius: 20px; overflow: hidden; margin: 10px; width: calc(100% - 20px);">
@@ -941,14 +925,12 @@
         (function() {
             const pizzaData = [
                 // الكارت الجديد المطلوب (أول واحد)
-                { 
-    id: "pz_giant", 
-    name: "بيتزا العملاق", 
-    price: 200, 
-    ing: "شاورما فراخ - شاورما لحمه - سوسيس", 
-    isSpecial: true,
-    off: true
-},
+                { id: "pz_giant", 
+                    name: "بيتزا العملاق", 
+                    price: 200, 
+                    ing: "شاورما فراخ - شاورما لحمه - سوسيس", 
+                    isSpecial: true},
+                
                 { id: "pz1", name: "بيتزا مارجريتا", sizes: { "وسط": 90, "كبير": 110 } },
                 { id: "pz2", name: "بيتزا خضروات", sizes: { "وسط": 90, "كبير": 110 } },
                 { id: "pz3", name: "بيتزا بانيه قطع", sizes: { "وسط": 90, "كبير": 110 } },
@@ -961,25 +943,14 @@
                 { id: "pz10", name: "بيتزا تونة", sizes: { "وسط": 120, "كبير": 140 } },
                 { id: "pz11", name: "بيتزا بسطرمة", sizes: { "وسط": 120, "كبير": 140 } },
                 { id: "pz12", name: "بيتزا شاورمة فراخ", sizes: { "وسط": 130, "كبير": 150 } },
-                { 
-    id: "pz13", 
-    name: "بيتزا شاورمة لحمة", 
-    sizes: { "وسط": 130, "كبير": 150 },
-    off: true
-},
+                { id: "pz13", name: "بيتزا شاورمة لحمة", sizes: { "وسط": 130, "كبير": 150 } },
                 { id: "pz14", name: "بيتزا شيش طاووق", sizes: { "وسط": 130, "كبير": 150 } },
                 { id: "pz15", name: "بيتزا فاهيتا ميكسيكان", sizes: { "وسط": 130, "كبير": 150 } },
                 { id: "pz16", name: "بيتزا تشيكن رانش", sizes: { "وسط": 140, "كبير": 170 } },
                 { id: "pz17", name: "بيتزا تشيكن باربكيو", sizes: { "وسط": 140, "كبير": 170 } },
                 { id: "pz18", name: "بيتزا الملكة", price: 170, ing: "سوسيس - زنجر + مدخنة" },
                 { id: "pz19", name: "بيتزا عمار", price: 160, ing: "سوسيس + سلامي" },
-                { 
-    id: "pz20", 
-    name: "بيتزا الكينج", 
-    sizes: { "وسط": 150, "كبير": 200 }, 
-    ing: "شاورمة لحمة + شاورمة فراخ",
-    off: true
-},
+                { id: "pz20", name: "بيتزا الكينج", sizes: { "وسط": 150, "كبير": 200 }, ing: "شاورمة لحمة + شاورمة فراخ" },
                 { id: "pz21", name: "سي رانش", sizes: { "وسط": 150, "كبير": 180 }, ing: "زنجر + رانش" },
                 { id: "pz22", name: "بيتزا ميلانو", price: 170, ing: "فراخ - زنجر + سلامي" },
                 { id: "pz23", name: "زنجر سوبريم", sizes: { "وسط": 140, "كبير": 170 } },
@@ -1024,10 +995,7 @@
 
                 // إضافة الـ Class "special-card" والـ Label الأحمر لو العنصر isSpecial
                 pizzaContainer.innerHTML += `
-                <div class="card-item 
-${item.isSpecial ? 'special-card' : ''} 
-${item.off ? 'off' : ''}
-"style="background: #2B090A; border-radius: 15px; padding: 12px; border: 1px solid rgba(227,179,97,0.1); position: relative; display: flex; flex-direction: column; margin-top: 10px;">
+                    <div class="card-item ${item.isSpecial ? 'special-card' : ''}" style="background: #2B090A; border-radius: 15px; padding: 12px; border: 1px solid rgba(227,179,97,0.1); position: relative; display: flex; flex-direction: column; margin-top: 10px;">
                         ${item.isSpecial ? '<div class="new-label-red">جديد</div>' : ''}
                         <h3 style="color: #F6E6CF; font-size: 1rem; margin: 5px 0; min-height: 35px;">${item.name}</h3>
                         ${info}
@@ -1099,7 +1067,6 @@ ${item.off ? 'off' : ''}
             z-index: 11;
         }
     </style>
-    
 
     <h2 class="section-header" style="text-align: center; color: #E3B361; margin-bottom: 30px; font-size: 28px; font-family: 'Segoe UI', Tahoma, sans-serif;">
         <i class="fas fa-box-open"></i> قسم الكريبات 🔥
@@ -1153,9 +1120,8 @@ ${item.off ? 'off' : ''}
                 { id: "37", name: "كريب S 17", price: 100, ing: "بانيه + زنجر + برجر+ بطاطس + صوص + برباكيو " },
                 { id: "38", name: "كريب S 18", price: 100, ing: " بانيه+ زنجر + برجر+ بطاطس  + صوص برباكيو  + سلامي + كونو " },
                 { id: "39", name: "كريب زنجر سوبر بريم", price: 80, ing: "" }
-             
-            ]; 
- 
+            ];
+
             const grid = document.querySelector('#crepes .menu-grid');
             const selectedItems = {};
 
@@ -1172,7 +1138,7 @@ ${item.off ? 'off' : ''}
                     : `<div style="min-height: 57px;"></div>`;
 
                 grid.innerHTML += `
-                <div id="${item.id}" class="card-item ${item.isNew ? 'special-crepe' : ''}" style="position: relative; border-radius: 20px; background: #2B090A; padding: 15px; display: flex; flex-direction: column; border: 1.5px solid #E3B361; transition: 0.3s; box-shadow: 0 4px 15px rgba(0,0,0,0.3); margin-top: 10px;">
+                    <div class="card-item ${item.isNew ? 'special-crepe' : ''}" style="position: relative; border-radius: 20px; background: #2B090A; padding: 15px; display: flex; flex-direction: column; border: 1.5px solid #E3B361; transition: 0.3s; box-shadow: 0 4px 15px rgba(0,0,0,0.3); margin-top: 10px;">
                         ${item.isNew ? '<div class="new-badge-red">جديد</div>' : ''}
                         <div style="position: absolute; top: 10px; left: 10px; background: #e74c3c; color: white; padding: 2px 8px; font-size: 10px; font-weight: bold; border-radius: 5px; z-index: 10; border: 1px solid #E3B361;">10% OFF</div>
                         <div class="item-info" style="margin-top: 15px;">
@@ -1491,7 +1457,7 @@ ${item.off ? 'off' : ''}
                 }
 
                 grid.innerHTML += `
-                <div id="${item.id}" class="${cardClass}"  style="border-radius: 20px; background: #2B090A; padding: 12px; display: flex; flex-direction: column; border: 1px solid #E3B361; margin-top: 10px;">
+                    <div class="${cardClass}" style="border-radius: 20px; background: #2B090A; padding: 12px; display: flex; flex-direction: column; border: 1px solid #E3B361; margin-top: 10px;">
                         ${badgeHTML}
                         <h3 style="color: #F6E6CF; font-size: 1rem; margin: 5px 0; min-height: 30px; text-align: center;">${item.name}</h3>
                         ${imageHTML}
@@ -1712,7 +1678,7 @@ ${item.off ? 'off' : ''}
             <option value="كوبري المرور" data-price="30">كوبري المرور (30 ج.م)</option>
             <option value="منطقة أخرى" data-price="0">منطقة أخرى (السعر حسب الاتفاق)</option>
                 </select>
-        
+        </select>
         <p style="font-size:13px; color: var(--gold-clr); margin-bottom:10px;">سعر التوصيل للمنطقة: <span id="delivery-cost">0</span> ج.م</p>
 
         <textarea style="width:100%; padding:12px; margin-bottom:10px; background:#1a1a1a; border:1px solid #333; color:#fff; border-radius:12px;" id="u-addr" placeholder="العنوان بالتفصيل"></textarea>
@@ -2498,7 +2464,7 @@ ${item.off ? 'off' : ''}
       </div>
 
     </div>
-  
+  </div>
 </footer>
 <script>
     // =========================
@@ -3124,67 +3090,39 @@ if (item.sizes) {
         
         // ===== 2. منع فتح الوافل بره الوقت =====
         let originalFilterMenu = window.filterMenu;
-window.filterMenu = function(category) {
-
-    if (category === 'waffles') {
-
-        if (!isWaffleTimeOpen()) {
-
-            alert("⏰ ركن الوافل متاح فقط من الساعة 8:00 مساءً حتى 7:00 صباحًا.");
-
-            return;
-        }
-    }
-
-    if (originalFilterMenu) originalFilterMenu(category);
-};
-
-// ===== 3. إضافة نص تحت منتجات الوافل =====
-function addWaffleNote() {
-
-    let isOpen = isWaffleTimeOpen();
-
-    let waffleItems = document.querySelectorAll('.menu-item, .product-card');
-
-    waffleItems.forEach(item => {
-
-        if (item.innerText && item.innerText.includes('وافل')) {
-
-            let oldNote = item.querySelector('.waffle-note-custom');
-
-            if (oldNote) oldNote.remove();
-
-            let note = document.createElement('div');
-
-            note.className = 'waffle-note-custom';
-
-            if (isOpen) {
-
-                note.innerHTML = '✅ متاح الآن';
-
-                note.style.cssText =
-                'font-size: 11px; color: #4caf50; margin-top: 5px;';
-
-            } else {
-
-                note.innerHTML = '🕗 متاح من 8 م إلى 7 ص';
-
-                note.style.cssText =
-                'font-size: 11px; color: #E3B361; margin-top: 5px;';
+        window.filterMenu = function(category) {
+            if (category === 'waffles') {
+                if (!isWaffleTimeOpen()) {
+                    alert("⏰ ركن الوافل متاح فقط من الساعة 8:00 مساءً حتى 4:00 صباحًا.");
+                    return;
+                }
             }
-
-            item.appendChild(note);
+            if (originalFilterMenu) originalFilterMenu(category);
+        };
+        
+        // ===== 3. إضافة نص تحت منتجات الوافل (اختياري) =====
+        function addWaffleNote() {
+            let isOpen = isWaffleTimeOpen();
+            let waffleItems = document.querySelectorAll('.menu-item, .product-card');
+            
+            waffleItems.forEach(item => {
+                if (item.innerText && item.innerText.includes('وافل')) {
+                    let oldNote = item.querySelector('.waffle-note-custom');
+                    if (oldNote) oldNote.remove();
+                    
+                    let note = document.createElement('div');
+                    note.className = 'waffle-note-custom';
+                    if (isOpen) {
+                        note.innerHTML = '✅ متاح الآن';
+                        note.style.cssText = 'font-size: 11px; color: #4caf50; margin-top: 5px;';
+                    } else {
+                        note.innerHTML = '🕗 متاح من 8 م إلى 4 ص';
+                        note.style.cssText = 'font-size: 11px; color: #E3B361; margin-top: 5px;';
+                    }
+                    item.appendChild(note);
+                }
+            });
         }
-    });
-}
-
-// ===== توقيت الوافل =====
-function isWaffleTimeOpen() {
-
-    let hour = new Date().getHours();
-
-    return hour >= 20 || hour < 7;
-}
         
         // تشغيل كل حاجة
         document.addEventListener('DOMContentLoaded', function() {
@@ -3198,61 +3136,11 @@ function isWaffleTimeOpen() {
     })();
     </script>
     
-    
+    </script>
     <script>
         window.addEventListener('load', () => {
             document.body.style.visibility = 'visible';
         });
         </script>
-        <script>
-
-            document.getElementById("12")
-            .classList.add("off");
-            
-            </script>
-            <script>
-
-                const sandwichIds = [
-                "s1",
-                "s2",
-                "s3",
-                "s4",
-                "s5",
-                "s6",
-                "s7",
-                "s8",
-                "s9",
-                "s10",
-                "s11",
-                "s12",
-                "s13",
-                "s14",
-                "s15",
-                "s16",
-                "s17",
-                "s18",
-                "s19",
-                "s20",
-                "s21",
-                "s22",
-                "s23",
-                "s24",
-                "s25",
-                "s26",
-                "s27",
-                "giant-s"
-                ];
-                
-                sandwichIds.forEach(id=>{
-                
-                if(id !== "s2"){
-                
-                document.getElementById(id)?.classList.add("off");
-                
-                }
-                
-                });
-                
-                </script>
 </body>
 </html>
