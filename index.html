@@ -243,6 +243,38 @@
             font-weight: bold;
         }
     </style>
+    <style>
+        .off{
+    opacity:.45 !important;
+    pointer-events:none !important;
+    filter:grayscale(100%) !important;
+    position:relative !important;
+}
+
+.off::after{
+    content:"غير متاح حالياً";
+
+    position:absolute;
+    top:50%;
+    left:50%;
+
+    transform:translate(-50%,-50%);
+
+    background:#111;
+    color:#fff;
+
+    padding:10px 18px;
+
+    border-radius:14px;
+
+    font-size:14px;
+    font-weight:bold;
+
+    border:1px solid #E3B361;
+
+    z-index:9999;
+}
+    </style>
 </head>
 <body>
     <div id="side-nav" class="side-nav" style="direction: rtl; text-align: right; background: #1a0f0a !important; border-left: 3px solid #E3B361 !important; z-index: 9999 !important;">
@@ -1019,7 +1051,7 @@
 
                 // إضافة الـ Class "special-card" والـ Label الأحمر لو العنصر isSpecial
                 pizzaContainer.innerHTML += `
-                    <div class="card-item ${item.isSpecial ? 'special-card' : ''}" style="background: #2B090A; border-radius: 15px; padding: 12px; border: 1px solid rgba(227,179,97,0.1); position: relative; display: flex; flex-direction: column; margin-top: 10px;">
+                <div class="card-item ${item.isSpecial ? 'special-card' : ''} ${item.id === 'pz13' ? 'off' : ''}" style="background: #2B090A; border-radius: 15px; padding: 12px; border: 1px solid rgba(227,179,97,0.1); position: relative; display: flex; flex-direction: column; margin-top: 10px;">
                         ${item.isSpecial ? '<div class="new-label-red">جديد</div>' : ''}
                         <h3 style="color: #F6E6CF; font-size: 1rem; margin: 5px 0; min-height: 35px;">${item.name}</h3>
                         ${info}
