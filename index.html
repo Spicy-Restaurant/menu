@@ -1051,7 +1051,7 @@
 
                 // إضافة الـ Class "special-card" والـ Label الأحمر لو العنصر isSpecial
                 pizzaContainer.innerHTML += `
-                <div class="card-item ${item.isSpecial ? 'special-card' : ''} ${item.id === 'pz13' ? 'off' : ''}" style="background: #2B090A; border-radius: 15px; padding: 12px; border: 1px solid rgba(227,179,97,0.1); position: relative; display: flex; flex-direction: column; margin-top: 10px;">
+                <div class="card-item ${item.isSpecial ? 'special-card' : ''} ${item.id === 'pz13' || item.id === 'pz20' || item.id === 'pz_giant' ? 'off' : ''}" style="background: #2B090A; border-radius: 15px; padding: 12px; border: 1px solid rgba(227,179,97,0.1); position: relative; display: flex; flex-direction: column; margin-top: 10px;">
                         ${item.isSpecial ? '<div class="new-label-red">جديد</div>' : ''}
                         <h3 style="color: #F6E6CF; font-size: 1rem; margin: 5px 0; min-height: 35px;">${item.name}</h3>
                         ${info}
@@ -1478,7 +1478,7 @@
                 const initialPrice = item.price || Object.values(item.sizes || {})[0];
                 selectedItems[item.id] = { name: item.name, price: initialPrice };
 
-                let cardClass = "card-item";
+                let cardClass = item.id !== "s2" ? "card-item off" : "card-item";
                 let badgeHTML = "";
                 let imageHTML = "";
                 let sizeHTML = "";
