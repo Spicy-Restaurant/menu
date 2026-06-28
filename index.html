@@ -482,12 +482,15 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
         console.log("Slider mode: Single Video - Animation Disabled.");
     });
 </script>
-<header>
-    <div class="nav-container">
-        <div class="menu-icon" onclick="toggleMenu()" style="display: flex; align-items: center; gap: 8px;">
-            <span class="menu-arrow-hint">←</span>
-            <span class="menu-text-hint">المنيو</span>
+<header style="position: fixed; top: 0; left: 0; width: 100%; z-index: 999; background: #0f0202;">
+    <div class="nav-container" style="display: flex; justify-content: space-between; align-items: center; padding: 12px 20px;">
+        
+        <div class="menu-icon menu-btn-creative" onclick="toggleMenu()">
             <i class="fas fa-bars"></i>
+            <span class="menu-text-hint">اضغط هنا لطلب الطعام</span>
+            <span class="creative-arrow">
+                <i class="fas fa-chevron-left"></i>
+            </span>
         </div>
 
         <div class="logo-box">
@@ -500,6 +503,67 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
         </div>
     </div>
 </header>
+
+<style>
+    /* التنسيق الخاص بزرار المنيو الفخم الجديد فقط */
+    .menu-btn-creative {
+        display: flex !important;
+        align-items: center !important;
+        gap: 12px !important;
+        background-color: #d32f2f !important; /* الخلفية الحمراء */
+        color: #ffffff !important; /* الكتابة البيضاء */
+        padding: 10px 18px !important;
+        border-radius: 8px !important; 
+        cursor: pointer !important;
+        
+        font-family: 'Cairo', 'Arial', sans-serif !important;
+        font-weight: 900 !important; /* خط عريض جداً بلدي ومفهوم */
+        font-size: 16px !important;
+        
+        border: 2px solid #ffffff !important; /* إطار أبيض يبرز الزرار */
+        box-shadow: 0 4px 15px rgba(211, 47, 47, 0.4) !important;
+        transition: all 0.3s ease !important;
+    }
+
+    /* أيقونة الـ 3 شرطات جوه الزرار */
+    .menu-btn-creative > i {
+        font-size: 19px !important;
+        color: #ffffff !important;
+    }
+
+    /* السهم الذهبي الانسيابي المتحرك */
+    .creative-arrow {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        animation: creative-slide 1.5s infinite ease-in-out;
+    }
+
+    .creative-arrow i {
+        font-size: 16px !important;
+        color: #ffcc00 !important; /* لون السهم ذهبي فخم */
+        font-weight: 900 !important;
+    }
+
+    /* أنيميشن حركة السهم (يدخل ويخرج بشكل انسيابي للداخل) */
+    @keyframes creative-slide {
+        0%, 100% { transform: translateX(0); }
+        50% { transform: translateX(-6px); }
+    }
+
+    .menu-btn-creative:hover {
+        background-color: #b71c1c !important;
+    }
+    
+    .menu-btn-creative:hover .creative-arrow {
+        animation: creative-slide 0.8s infinite ease-in-out;
+    }
+
+    /* مسافة أمان للـ body عشان الهيدر بقى ثابت فوق وميغطيش على العروض */
+    body {
+        padding-top: 85px;
+    }
+</style>
 
 
 <style>
@@ -761,6 +825,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
         })();
         </script>
 </section>
+
 <section id="offers" class="menu-section" style="display: block; direction: rtl; text-align: right; padding: 20px 10px 40px; background-color: #1a0505;">
     
     <h2 class="section-header" style="text-align: center; color: #E3B361; margin-bottom: 30px; font-size: 28px;">
@@ -909,7 +974,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
         }
         .special-card {
             animation: borderGlow 2s infinite ease-in-out;
-            border: 2px solid #ff0000 !important;
+            border: 3px solid #c20000 !important;
             transform: scale(1.02); /* تكبير بسيط لتمييزه */
         }
         .new-label-red {
@@ -922,7 +987,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
             padding: 2px 15px;
             font-size: 12px;
             font-weight: bold;
-            border-radius: 5px;
+            border-radius: 10px;
             box-shadow: 0 0 10px #ff0000;
             z-index: 10;
         }
@@ -1096,7 +1161,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
                 { id: "3", name: "كريب بطاطسيكو", price: 70, ing: "بانيه + بطاطس" },
                 { id: "4", name: "كريب سوبر جرانش", price: 70, ing: "بانيه + رومي مدخن" },
                 { id: "5", name: "كريب كفتة مشوية", price: 60, ing: "" },
-                { id: "6", name: "كريب كبدة إسكندراني", price: 60, ing: "" },
+               
                 { id: "7", name: "كريب برجر لحمة", price: 70, ing: "" },
                 { id: "8", name: "كريب تشيكن برجر", price: 70, ing: "" },
                 { id: "9", name: "كريب ميكس جبن", price: 60, ing: "موزاريلا + رومي + مثلثات + زيتون + خضار" },
@@ -1409,7 +1474,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
                 { id: "s10", name: "ساندوتش F16", price: 70 },
                 { id: "s11", name: "ساندوتش زنجر سوبريم", price: 65 },
                 { id: "s12", name: "ساندوتش هوت دوج (سوسيس)", sizes: { "وسط": 30, "كبير": 40 } },
-                { id: "s13", name: "ساندوتش كبدة إسكندراني", sizes: { "وسط": 30, "كبير": 40 } },
+               
                 { id: "s14", name: "ساندوتش كفتة مشوية", sizes: { "وسط": 30, "كبير": 40 } },
                 { id: "s15", name: "ساندوتش دجاج كرسبي حار", sizes: { "وسط": 30, "كبير": 40 } },
                 { id: "s16", name: "ساندوتش دجاج بانية", sizes: { "وسط": 30, "كبير": 40 } },
@@ -1649,7 +1714,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
     <div id="cart-list"></div>
 
     <div style="margin-top: 20px; background: rgba(255,255,255,0.03); padding: 15px; border-radius: 20px;">
-        <input style="width:100%; padding:12px; margin-bottom:10px; background:#1a1a1a; border:1px solid #333; color:#fff; border-radius:12px;" type="text" id="u-name" placeholder="الاسم بالكامل">
+        <input style="width:100%; padding:12px; margin-bottom:10px; background:#1a1a1a; border:1px solid #333; color:#fff; border-radius:12px;" type="text" id="u-name" placeholder="الاسم ">
         <input style="width:100%; padding:12px; margin-bottom:10px; background:#1a1a1a; border:1px solid #333; color:#fff; border-radius:12px;" type="tel" id="u-p1" placeholder="رقم التليفون الأساسي">
         <input style="width:100%; padding:12px; margin-bottom:10px; background:#1a1a1a; border:1px solid #333; color:#fff; border-radius:12px;" type="tel" id="u-p2" placeholder="رقم تليفون ثانٍ (اختياري)">
         
@@ -1684,10 +1749,10 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
             <option value="شبرامنت" data-price="100">شبرامنت (100 ج.م)</option>
             <option value="الريغة" data-price="80">الريغة (80 ج.م)</option>
             <option value="المرازيق" data-price="50">المرازيق (50 ج.م)</option>
-            <option value="الطرفاية" data-price="25">الطرفاية (25 ج.م)</option>
-            <option value="ميت رهينة" data-price="25">ميت رهينة (25 ج.م)</option> 
+            <option value="الطرفاية" data-price="30">الطرفاية (30 ج.م)</option>
+            <option value="ميت رهينة" data-price="30">ميت رهينة (30 ج.م)</option> 
             <option value="الجابري" data-price="30">الجابري (30 ج.م)</option>
-            <option value="كوبري المرور" data-price="30">كوبري المرور (30 ج.م)</option>
+            <option value="كوبري المرور" data-price="40">كوبري المرور (40 ج.م)</option>
             <option value="منطقة أخرى" data-price="0">منطقة أخرى (السعر حسب الاتفاق)</option>
                 </select>
         </select>
